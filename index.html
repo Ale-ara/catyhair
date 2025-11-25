@@ -150,6 +150,65 @@ section{padding:64px 6vw}
 ::-webkit-scrollbar{width:10px}
 ::-webkit-scrollbar-track{background:#090909}
 ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--gold),#b8924a);border-radius:10px}
+
+/* SELECT PREMIUM DOURADO */
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: rgba(215,185,89,0.12);
+  border: 1px solid rgba(215,185,89,0.35);
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: #f5e9c0 !important;
+  font-weight: 600;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  font-size: 15px;
+  transition: .25s;
+}
+
+.select:hover {
+  border-color: #d7b959;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #d7b959;
+  box-shadow: 0 0 0 2px rgba(215,185,89,0.25);
+}
+
+/* A seta customizada */
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select-wrapper::after {
+  content: "▼";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #d7b959;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+/* MOBILE FIX */
+@media(max-width:520px){
+  .chat-footer .select {
+    font-size: 16px;
+    padding: 14px 16px;
+  }
+
+  .select-wrapper::after {
+    right: 18px;
+    font-size: 14px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -316,22 +375,21 @@ section{padding:64px 6vw}
   </div>
 
   <div class="chat-footer">
-    <div style="width:100%">
-      <div style="display:flex;gap:8px;margin-bottom:8px">
-        <select id="chatService" class="select small">
-          <option value="">Serviço</option>
-          <option>Corte</option>
-          <option>Escova</option>
-          <option>Coloração</option>
-          <option>Luzes</option>
-          <option>Tratamento</option>
-        </select>
-        <select id="chatTime" class="select small">
-          <option value="">Horário</option>
-          <option>Manhã</option>
-          <option>Tarde</option>
-          <option>Noite</option>
-        </select>
+  <div style="width:100%">
+
+    <!-- SELECT SERVIÇO PREMIUM -->
+    <div class="select-wrapper" style="margin-bottom:8px;">
+      <select id="chatService" class="select">
+        <option value="">Serviço</option>
+        <option>Corte</option>
+        <option>Escova</option>
+        <option>Coloração</option>
+        <option>Luzes</option>
+        <option>Tratamento</option>
+      </select>
+    </div>
+
+        
       </div>
 
       <div style="display:flex;gap:8px">
