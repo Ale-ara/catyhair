@@ -17,7 +17,6 @@
   *{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
   body{background:#000;color:#fff;-webkit-font-smoothing:antialiased;}
 
-  /* ========== PAGE LOAD FIX ========== */
   .page-enter{
     opacity:0;
     animation: pageIn 0.9s ease forwards;
@@ -27,14 +26,12 @@
     to{opacity:1;transform:translateY(0);}
   }
 
-  /* TOPBAR */
   .topbar{
     text-align:center;padding:8px 12px;font-size:13px;color:#ccc;
     background:rgba(255,255,255,0.02);border-bottom:1px solid rgba(215,185,89,0.05);
   }
   .topbar strong{color:var(--gold)}
 
-  /* HEADER */
   header{
     display:flex;align-items:center;justify-content:space-between;
     padding:14px 18px;position:sticky;top:0;z-index:20;
@@ -45,7 +42,6 @@
   nav{display:flex;gap:16px;}
   nav a{color:var(--gold-soft);font-weight:600;}
 
-  /* HERO */
   .hero{
     display:grid;grid-template-columns:1fr 500px;gap:40px;
     padding:32px 5vw;align-items:center;
@@ -64,7 +60,6 @@
     background:rgba(215,185,89,0.12);color:#000;
   }
 
-  /* VIDEO RETANGULAR */
   .video-card{
     width:100%;height:320px;border-radius:14px;overflow:hidden;
     border:2px solid rgba(215,185,89,0.15);box-shadow:0 20px 60px rgba(0,0,0,0.7);
@@ -79,44 +74,14 @@
     color:var(--gold);padding:8px 10px;border-radius:10px;cursor:pointer;
   }
 
-  /* REVEAL AO ROLAR */
   .reveal{opacity:0;transform:translateY(20px);transition:all .7s ease;}
   .show{opacity:1 !important;transform:translateY(0) !important;}
 
-  /* SLIDESHOW */
-  .slideshow{position:relative;width:100%;height:380px;border-radius:14px;overflow:hidden;
-    border:2px solid rgba(215,185,89,0.1);box-shadow:0 30px 70px rgba(0,0,0,0.5);}
-  .slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease;}
-  .slide.active{opacity:1;}
-  .slide img{width:100%;height:100%;object-fit:cover;}
-  .dots{display:flex;justify-content:center;margin-top:10px;gap:8px;}
-  .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.2);}
-  .dot.active{background:var(--gold);}
-
-  /* TEAM */
-  .team-grid{
-    display:grid;grid-template-columns:repeat(2,1fr);
-    gap:20px;
-  }
-  .team-card{
-    background:rgba(255,255,255,0.02);padding:20px;border-radius:14px;
-    border:1px solid rgba(215,185,89,0.08);text-align:center;
-  }
-  .team-photo{
-    width:150px;height:150px;margin:0 auto 12px;
-    border-radius:14px;overflow:hidden;border:4px solid rgba(215,185,89,0.1);
-  }
-  .team-photo img{width:100%;height:100%;object-fit:cover;}
-
-  footer{text-align:center;padding:20px;color:var(--gold);margin-top:40px;}
-
-  /* MOBILE */
   @media(max-width:840px){
     .hero{grid-template-columns:1fr;gap:22px;}
     header img{height:46px;}
     .video-card{height:240px;}
     .hero h1{font-size:32px;}
-    .team-grid{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -150,7 +115,6 @@
   </div>
 
   <div class="video-card">
-    <!-- Caminho do vídeo que você enviou -->
     <video id="videoCaty" muted loop playsinline>
       <source src="/mnt/data/Gratidão a Ti, Senhor, por ser minha força nos momentos difíceis e por me motivar todos os dias .mp4">
     </video>
@@ -158,6 +122,7 @@
   </div>
 </section>
 
+<!-- FIM DA PARTE 1 -->
 <!-- GALERIA -->
 <section id="galeria" class="reveal" style="padding:34px 5vw;">
   <h2 style="color:var(--gold);margin-bottom:12px;">Galeria — Sessão de Fotos</h2>
@@ -187,17 +152,17 @@
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;">
     <div class="team-card">
       <h3 style="color:var(--gold);margin-bottom:8px;">Corte Feminino</h3>
-      <p style="color:#d6ccb4">Cortes modernos, repicados, bordados e muito mais.</p>
+      <p style="color:#d6ccb4">Cortes modernos e personalizados.</p>
     </div>
 
     <div class="team-card">
       <h3 style="color:var(--gold);margin-bottom:8px;">Coloração & Mechas</h3>
-      <p style="color:#d6ccb4">Luzes, balayage, mechas finas e loiro perfeito.</p>
+      <p style="color:#d6ccb4">Luzes, balayage, mechas perfeitas.</p>
     </div>
 
     <div class="team-card">
       <h3 style="color:var(--gold);margin-bottom:8px;">Escova & Finalização</h3>
-      <p style="color:#d6ccb4">Brilho, movimento e acabamento profissional.</p>
+      <p style="color:#d6ccb4">Brilho e movimento profissional.</p>
     </div>
   </div>
 </section>
@@ -216,7 +181,7 @@
       </div>
       <div class="team-name">Caty Silva</div>
       <div class="team-role">Proprietária / Hair Artist</div>
-      <p style="color:#d6ccb4;margin-top:8px;">Especialista em coloração, luzes e cortes personalizados.</p>
+      <p style="color:#d6ccb4;margin-top:8px;">Especialista em coloração e cortes.</p>
     </div>
 
     <!-- FILHA -->
@@ -225,13 +190,12 @@
         <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=800" alt="">
       </div>
       <div class="team-name">Mariana Silva</div>
-      <div class="team-role">Assistente / Styling</div>
-      <p style="color:#d6ccb4;margin-top:8px;">Responsável por finalização, organização e apoio técnico.</p>
+      <div class="team-role">Assistente</div>
+      <p style="color:#d6ccb4;margin-top:8px;">Finalização e organização técnica.</p>
     </div>
 
   </div>
 </section>
-
 
 
 <!-- CONTATO -->
@@ -253,23 +217,27 @@
   </p>
 </section>
 
+<footer style="text-align:center;color:var(--gold);padding:20px;">
+  © <span id="year"></span> Studio Caty Hair — Todos os direitos reservados.
+</footer>
 
-<!-- BOTÕES FLUTUANTES -->
-<div style="position:fixed;left:14px;bottom:20px;display:flex;flex-direction:column;gap:10px;z-index:900;">
-  <a href="https://wa.me/5521980722830" target="_blank" style="width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#25D366;">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/whatsapp/whatsapp-original.svg" style="width:34px;">
+<!-- FIM DA PARTE 2 -->
+ <!-- BOTÕES FLUTUANTES -->
+<div style="position:fixed;left:14px;bottom:90px;display:flex;flex-direction:column;gap:10px;z-index:900;">
+  <a href="https://wa.me/5521980722830" target="_blank" style="width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#25D366;">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/whatsapp/whatsapp-original.svg" style="width:26px;">
   </a>
 
-  <a href="https://instagram.com/_catyhair" target="_blank" style="width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#E1306C;">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" style="width:34px;">
+  <a href="https://instagram.com/_catyhair" target="_blank" style="width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#E1306C;">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" style="width:26px;">
   </a>
 </div>
 
 
 <!-- CHATBOT -->
 <div class="chat-bot" style="position:fixed;right:20px;bottom:20px;z-index:999;">
-  
-  <!-- JANELA DO CHAT -->
+
+  <!-- JANELA -->
   <div class="chat-window" id="chatWindow" style="
     width:340px;max-width:92vw;height:420px;background:#0a0a0a;
     border-radius:14px;overflow:hidden;border:2px solid rgba(215,185,89,0.3);
@@ -284,38 +252,32 @@
     </div>
 
     <div id="chatBody" style="flex:1;padding:12px;overflow:auto;display:flex;flex-direction:column;gap:8px;">
-      <div class="msg bot" style="background:rgba(215,185,89,0.12);padding:10px;border-radius:10px;">
+      <div class="msg bot" style="padding:10px;border-radius:10px;background:rgba(215,185,89,0.12);">
         Olá! Sou a Caty. Como posso ajudar? 😊
       </div>
     </div>
 
     <div id="chatFooter" style="padding:10px;border-top:1px solid rgba(255,255,255,0.1);display:none;gap:8px;">
-      <input id="chatInput" placeholder="Digite aqui..." style="flex:1;padding:10px;border-radius:10px;border:none;background:#222;color:#fff;">
+      <input id="chatInput" placeholder="Digite seu nome..." style="flex:1;padding:10px;border-radius:10px;border:none;background:#222;color:#fff;">
       <button id="sendBtn" style="padding:10px 12px;background:var(--gold);border-radius:10px;border:none;color:#000;font-weight:700;">Enviar</button>
     </div>
   </div>
 
-  <!-- BOTÃO DO CHAT -->
+  <!-- BOTÃO -->
   <div id="chatToggle" style="
-    width:64px;height:64px;
-    display:flex;align-items:center;justify-content:center;
-    font-size:26px;border-radius:50%;cursor:pointer;
-    background:var(--gold);color:#000;font-weight:700;
+    width:60px;height:60px;display:flex;align-items:center;justify-content:center;
+    background:var(--gold);border-radius:50%;font-size:22px;color:#000;font-weight:700;cursor:pointer;
     box-shadow:0 12px 40px rgba(0,0,0,0.6);
   ">💬</div>
 
 </div>
 
 
-<footer>© <span id="year"></span> Studio Caty Hair — Todos os direitos reservados.</footer>
-
-
-<!-- ================= SCRIPTS ================= -->
-
+<!-- SCRIPTS -->
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
 
-/* VIDEO AUTO PLAY + SOUND BUTTON */
+/* VIDEO */
 const video = document.getElementById("videoCaty");
 const soundBtn = document.getElementById("soundBtn");
 
@@ -339,8 +301,7 @@ soundBtn.onclick = ()=>{
   soundBtn.style.display = "none";
 };
 
-
-/* REVEAL ON SCROLL */
+/* REVEAL */
 const reveals = document.querySelectorAll(".reveal");
 const obs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{
@@ -349,13 +310,11 @@ const obs = new IntersectionObserver(entries=>{
 },{threshold:0.2});
 reveals.forEach(el=>obs.observe(el));
 
-
 /* SLIDESHOW */
 const slides = document.querySelectorAll(".slide");
 const dots = document.getElementById("dots");
 let index = 0;
 
-/* criar bolinhas */
 slides.forEach((_,i)=>{
   let d = document.createElement("div");
   d.className = "dot" + (i==0?" active":"");
@@ -371,15 +330,8 @@ function show(n){
   dots.childNodes[n].classList.add("active");
 }
 
-function next(){
-  index = (index+1) % slides.length;
-  show(index);
-}
-
-function go(n){
-  index = n;
-  show(index);
-}
+function next(){ index = (index+1) % slides.length; show(index); }
+function go(n){ index = n; show(index); }
 
 setInterval(next, 3500);
 
@@ -411,17 +363,15 @@ function append(text, who="bot"){
   div.style.padding = "10px";
   div.style.borderRadius = "10px";
   div.style.marginBottom = "8px";
-
   div.textContent = text;
   div.style.background = who==="bot" ? "rgba(215,185,89,0.12)" : "rgba(255,255,255,0.08)";
-
   chatBody.appendChild(div);
   chatBody.scrollTop = chatBody.scrollHeight;
 }
 
 function startFlow(){
   chatBody.innerHTML = "";
-  append("Qual serviço deseja hoje? 😊");
+  append("Qual serviço você deseja hoje? 😊");
 
   let servicos = [
     "Corte Feminino",
@@ -457,22 +407,26 @@ function startFlow(){
   });
 
   const wrap = document.createElement("div");
+  wrap.className = "msg bot";
+  wrap.style.padding = "10px";
+  wrap.style.borderRadius = "10px";
+  wrap.style.background = "rgba(215,185,89,0.12)";
   wrap.appendChild(box);
+
   chatBody.appendChild(wrap);
+  chatBody.scrollTop = chatBody.scrollHeight;
 }
 
 function askName(servico){
-  append("Perfeito! Qual seu nome?");
+  append("Perfeito! Qual é o seu nome?");
   chatFooter.style.display = "flex";
 
   function send(){
     const name = chatInput.value.trim();
     if(!name) return;
-
     append(name,"user");
     chatInput.value = "";
     chatFooter.style.display = "none";
-
     finish(servico,name);
     sendBtn.removeEventListener("click", send);
   }
@@ -498,6 +452,7 @@ function finish(servico,nome){
   chatBody.appendChild(box);
   chatBody.scrollTop = chatBody.scrollHeight;
 }
+
 </script>
 
 </body>
