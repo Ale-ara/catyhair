@@ -290,9 +290,10 @@ section{
    🖼️ 7. GALLERY SLIDER
 ========================================================= */
 
+/* GALLERY SLIDER 1080x1080 */
 .slideshow{
   position:relative;
-  height:360px;
+  height:360px; /* altura padrão — ajusta dinamicamente no mobile */
   border-radius:12px;
   overflow:hidden;
   border:2px solid rgba(215,185,89,0.06);
@@ -308,31 +309,44 @@ section{
 
 .slide.active{ opacity:1; }
 
+/* 🔥 Aqui garantimos que TODAS as imagens ficam 1080×1080 */
 .slide img{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:cover;  /* mantém recorte perfeito */
+  object-position:center;
+  aspect-ratio: 1 / 1; /* força formatação quadrada */
+  display:block;
 }
 
+/* Bolinhas do slider */
 .dots{
   display:flex;
   justify-content:center;
   gap:10px;
   margin-top:12px;
 }
-
 .dot{
-  width:10px;
-  height:10px;
-  border-radius:50%;
+  width:10px;height:10px;border-radius:50%;
   background:rgba(255,255,255,0.12);
   cursor:pointer;
 }
-
 .dot.active{
   background:var(--gold);
   box-shadow:0 8px 20px rgba(215,185,89,0.12);
 }
+
+/* RESPONSIVO - celular */
+@media(max-width:520px){
+  .slideshow{
+    height:340px; /* quadrado ideal para tela pequena */
+    border-radius:10px;
+  }
+  .slide img{
+    aspect-ratio: 1 / 1;
+  }
+}
+
 
 
 
@@ -757,8 +771,8 @@ section{
     <div class="section-title">Galeria</div>
 
     <div class="slideshow" id="slideshow">
-      <div class="slide active"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1600&auto=format&fit=crop" alt=""></div>
-      <div class="slide"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1600&auto=format&fit=crop" alt=""></div>
+      <div class="slide active"><img src="https://i.imgur.com/PMkQ64k.jpeg" alt=""></div>
+      <div class="slide"><img src="https://i.imgur.com/aJn8GHz.jpeg" alt=""></div>
       <div class="slide"><img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1600&auto=format&fit=crop" alt=""></div>
     </div>
     <div class="dots" id="dots"></div>
