@@ -1,459 +1,519 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Studio Caty Hair — Luxo Premium</title>
-
+<title>Studio Caty Hair — Glamour</title>
+<link rel="icon" href="https://i.imgur.com/EN4ndEj.png" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg: #000;
-    --gold: #D7B959;
-    --gold-soft: #eadf9a;
-    --muted: #bfbfbf;
-    --radius: 14px;
-  }
+:root{
+  --bg:#060405;
+  --panel:#0f0f10;
+  --gold:#D7B959;
+  --gold-2:#E3C97A;
+  --muted:#cfc6b6;
+  --glass: rgba(255,255,255,0.03);
+  --card-shadow: 0 20px 60px rgba(215,185,89,0.08);
+}
+*{box-sizing:border-box;font-family:'Poppins',sans-serif}
+html {scroll-behavior:smooth}
+body{
+  margin:0;background:linear-gradient(180deg,#040404,#090606);
+  color:#fff;min-height:100vh;-webkit-font-smoothing:antialiased;
+}
 
-  *{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
-  body{background:#000;color:#fff;-webkit-font-smoothing:antialiased;}
+/* HEADER */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 20px;background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.25));
+  border-bottom:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(6px)
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:58px;height:58px;object-fit:cover;border-radius:12px;border:2px solid rgba(215,185,89,0.12);background:#000;padding:6px}
+.brand h1{font-size:18px;margin:0;color:var(--gold);letter-spacing:0.6px}
+nav{display:flex;gap:18px;align-items:center}
+nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px 12px;border-radius:8px}
+nav a:hover{color:var(--gold);background:rgba(215,185,89,0.03)}
 
-  .page-enter{
-    opacity:0;
-    animation: pageIn 0.9s ease forwards;
-  }
-  @keyframes pageIn{
-    from{opacity:0;transform:translateY(18px);}
-    to{opacity:1;transform:translateY(0);}
-  }
+/* HERO */
+.hero{
+  height:86vh;min-height:560px;display:flex;align-items:center;padding:0 6vw;gap:36px;
+  margin-top:86px;position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;background-position:center;background-size:cover;filter:contrast(1.02) saturate(1.05);
+  transform:scale(1.04);transition:transform .9s ease, filter .6s ease;z-index:0;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.38),rgba(0,0,0,0.8));z-index:1;
+}
+.hero-left{z-index:2;max-width:680px}
+.kicker{color:var(--gold);font-weight:700;margin-bottom:10px}
+.title{font-size:48px;line-height:1.02;color:var(--gold);font-weight:800;margin:0 0 12px;text-shadow:0 10px 40px rgba(0,0,0,0.6)}
+.subtitle{color:var(--muted);font-size:16px;margin-bottom:18px;max-width:640px}
+.cta{display:flex;gap:12px}
+.btn{
+  padding:12px 18px;border-radius:999px;border:2px solid rgba(215,185,89,0.12);
+  font-weight:800;color:var(--gold);background:transparent;cursor:pointer
+}
+.btn.primary{
+  background:linear-gradient(90deg,var(--gold),var(--gold-2));color:#000;border-color:var(--gold)
+}
+.btn.ghost{background:rgba(255,255,255,0.03);color:var(--muted);border-color:transparent}
 
-  .topbar{
-    text-align:center;padding:8px 12px;font-size:13px;color:#ccc;
-    background:rgba(255,255,255,0.02);border-bottom:1px solid rgba(215,185,89,0.05);
-  }
-  .topbar strong{color:var(--gold)}
+/* VIDEO CARD (right) */
+.hero-right{width:520px;max-width:48%;z-index:2;display:flex;align-items:center;justify-content:center}
+.video-card{
+  width:100%;height:420px;border-radius:18px;overflow:hidden;border:8px solid rgba(215,185,89,0.08);
+  box-shadow:var(--card-shadow);position:relative;background:#000;
+}
+.video-card video{width:100%;height:100%;object-fit:cover;display:block}
+.sound-btn{
+  position:absolute;right:16px;bottom:16px;background:rgba(0,0,0,0.45);border:2px solid var(--gold);
+  color:var(--gold);padding:8px 10px;border-radius:10px;cursor:pointer;z-index:4
+}
 
-  header{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:14px 18px;position:sticky;top:0;z-index:20;
-    background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);
-  }
-  header img{height:56px;}
+/* SECTIONS */
+main{max-width:1200px;margin:0 auto;padding-bottom:80px}
+section{padding:64px 6vw}
+.section-title{color:var(--gold);font-weight:700;margin-bottom:12px}
 
-  nav{display:flex;gap:16px;}
-  nav a{color:var(--gold-soft);font-weight:600;}
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.service{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);min-height:140px}
+.service h4{color:var(--gold);margin:0 0 8px}
+.service p{color:var(--muted);font-size:14px}
 
-  .hero{
-    display:grid;grid-template-columns:1fr 500px;gap:40px;
-    padding:32px 5vw;align-items:center;
-  }
+/* GALLERY SLIDER (auto) */
+.slideshow{position:relative;height:360px;border-radius:12px;overflow:hidden;border:2px solid rgba(215,185,89,0.06);box-shadow:0 24px 70px rgba(0,0,0,0.6)}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
+.slide.active{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover}
+.dots{display:flex;gap:10px;justify-content:center;margin-top:12px}
+.dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.12);cursor:pointer}
+.dot.active{background:var(--gold);box-shadow:0 8px 20px rgba(215,185,89,0.12)}
 
-  .hero h1{
-    font-size:44px;color:var(--gold);font-weight:800;margin-bottom:12px;
-  }
-  .hero p{color:#d6ccb4;margin-bottom:20px;}
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.team-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);text-align:center}
+.team-photo{width:160px;height:160px;margin:0 auto 12px;border-radius:12px;overflow:hidden;border:6px solid rgba(215,185,89,0.08)}
+.team-photo img{width:100%;height:100%;object-fit:cover}
 
-  .btn{
-    padding:12px 20px;border-radius:12px;border:2px solid var(--gold);
-    background:transparent;color:var(--gold);cursor:pointer;font-weight:700;margin-right:10px;
-  }
-  .btn.primary{
-    background:rgba(215,185,89,0.12);color:#000;
-  }
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+.contact-card{padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+.input, .textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.05);background:rgba(255,255,255,0.03);color:var(--muted);outline:none}
+.send{background:var(--gold);color:#000;padding:10px 14px;border-radius:10px;border:none;font-weight:800;cursor:pointer}
 
-  .video-card{
-    width:100%;height:320px;border-radius:14px;overflow:hidden;
-    border:2px solid rgba(215,185,89,0.15);box-shadow:0 20px 60px rgba(0,0,0,0.7);
-    background:#000;position:relative;
-  }
-  .video-card video{
-    width:100%;height:100%;object-fit:cover;
-  }
-  #soundBtn{
-    position:absolute;right:14px;bottom:14px;
-    background:rgba(0,0,0,0.45);border:2px solid var(--gold);
-    color:var(--gold);padding:8px 10px;border-radius:10px;cursor:pointer;
-  }
+/* FABS */
+.fabs{position:fixed;left:14px;bottom:16px;display:flex;flex-direction:column;gap:10px;z-index:1500}
+.fab{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 12px 40px rgba(0,0,0,0.6)}
+.fab.whatsapp{background:#25D366;border:4px solid rgba(0,0,0,0.06)}
+.fab.ig{background:#E1306C;border:4px solid rgba(0,0,0,0.06)}
 
-  .reveal{opacity:0;transform:translateY(20px);transition:all .7s ease;}
-  .show{opacity:1 !important;transform:translateY(0) !important;}
+/* CHAT */
+.chat-toggle{position:fixed;right:20px;bottom:22px;background:var(--gold);width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#000;font-weight:700;cursor:pointer;z-index:1600;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+.chat-panel{position:fixed;right:20px;bottom:100px;width:360px;background:linear-gradient(180deg,rgba(10,10,10,0.95),rgba(10,10,10,0.9));border-radius:14px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 40px 100px rgba(0,0,0,0.7);display:flex;flex-direction:column;overflow:hidden;transform:translateY(12px);opacity:0;pointer-events:none;transition:all .28s ease;z-index:1600}
+.chat-panel.open{transform:translateY(0);opacity:1;pointer-events:auto}
+.chat-header{padding:12px;border-bottom:1px solid rgba(255,255,255,0.03);font-weight:700;color:var(--gold)}
+.chat-body{padding:12px;max-height:320px;overflow:auto;display:flex;flex-direction:column;gap:8px}
+.msg{padding:10px;border-radius:10px;max-width:78%}
+.msg.bot{background:linear-gradient(90deg,var(--glass),rgba(255,255,255,0.02));align-self:flex-start;color:#fff;border:1px solid rgba(255,255,255,0.02)}
+.msg.user{background:linear-gradient(90deg, rgba(215,185,89,0.14), rgba(215,185,89,0.08));align-self:flex-end;color:#000}
+.chat-footer{padding:10px;border-top:1px solid rgba(255,255,255,0.03);display:flex;gap:8px}
 
-  @media(max-width:840px){
-    .hero{grid-template-columns:1fr;gap:22px;}
-    header img{height:46px;}
-    .video-card{height:240px;}
-    .hero h1{font-size:32px;}
-  }
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:all .9s cubic-bezier(.2,.9,.2,1)}
+.reveal.show{opacity:1;transform:translateY(0)}
+
+/* responsive */
+@media(max-width:980px){
+  .hero{flex-direction:column;align-items:flex-start;padding:16px 6vw;height:auto}
+  .hero-right{width:100%}
+  .video-card{height:300px}
+  .team-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  nav{display:none}
+  header{padding:10px}
+  .title{font-size:26px}
+  .video-card{height:220px;border-radius:12px}
+  .chat-panel{left:12px;right:12px;bottom:72px;width:auto;max-width:calc(100% - 24px)}
+  .fab{width:48px;height:48px}
+  .chat-toggle{width:56px;height:56px;right:14px;bottom:12px}
+}
+
+/* scrollbar */
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:#090909}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--gold),#b8924a);border-radius:10px}
 </style>
 </head>
+<body>
 
-<body class="page-enter">
-
-<div class="topbar">
-  Studio Caty Hair — <strong>Beleza, Cuidado e Autoestima.</strong>
-</div>
-
+<!-- HEADER -->
 <header>
-  <img src="https://i.imgur.com/yesZiJ2.jpeg" alt="Logo">
+  <div class="brand">
+    <img src="/mnt/data/D0DF8106-69B6-46D5-BB43-F69B5C302C72.jpeg" alt="Logo Caty Hair">
+    <div>
+      <h1>Studio Caty Hair</h1>
+      <div style="color:var(--muted);font-size:13px">Studio de Beleza • Caty & Equipe</div>
+    </div>
+  </div>
+
   <nav>
-    <a href="#galeria">Galeria</a>
-    <a href="#servicos">Serviços</a>
-    <a href="#equipe">Equipe</a>
-    <a href="#contato">Contato</a>
+    <a href="#home">Início</a>
+    <a href="#services">Serviços</a>
+    <a href="#gallery">Galeria</a>
+    <a href="#team">Equipe</a>
+    <a href="#contact">Contato</a>
+    <a class="btn primary" id="ctaBook" href="#contact" style="text-decoration:none">Agendar</a>
   </nav>
 </header>
 
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-bg" style="background-image:url('/mnt/data/53322abd-18dd-4b39-abdc-75147de051ac.png')"></div>
+
+  <div class="hero-left reveal">
+    <div class="kicker">Studio Caty Hair</div>
+    <div class="title">Transforme o seu visual.<br><span style="color:#fff">Brilho, corte e cor com estilo</span></div>
+    <div class="subtitle">Atendimento personalizado, técnicas modernas e um toque de glamour — para clientes que buscam resultados profissionais e duradouros.</div>
+
+    <div class="cta">
+      <button class="btn primary" id="btnWhats">📲 Pedir Orçamento</button>
+      <a class="btn ghost" href="#gallery">Ver Galeria</a>
+    </div>
+  </div>
+
+  <div class="hero-right reveal">
+    <div class="video-card">
+      <video id="heroVideo" playsinline muted loop preload="auto">
+        <source src="/mnt/data/Gratidão a Ti, Senhor, por ser minha força nos momentos difíceis e por me motivar todos os dias .mp4" type="video/mp4">
+        Seu navegador não suporta vídeo.
+      </video>
+      <button class="sound-btn" id="soundBtn">🔊</button>
+    </div>
+  </div>
+</section>
+
 <main>
 
-<!-- HERO -->
-<section class="hero reveal">
-  <div>
-    <h1>Transformando beleza em autoestima</h1>
-    <p>Cortes, escovas, colorações, luzes e tratamentos com qualidade profissional.</p>
-
-    <button class="btn primary" id="agendarBtn">Agendar Agora</button>
-    <a href="#galeria" class="btn">Ver Galeria</a>
-  </div>
-
-  <div class="video-card">
-    <video id="videoCaty" muted loop playsinline>
-      <source src="/mnt/data/Gratidão a Ti, Senhor, por ser minha força nos momentos difíceis e por me motivar todos os dias .mp4">
-    </video>
-    <button id="soundBtn">🔊</button>
-  </div>
-</section>
-
-<!-- FIM DA PARTE 1 -->
-<!-- GALERIA -->
-<section id="galeria" class="reveal" style="padding:34px 5vw;">
-  <h2 style="color:var(--gold);margin-bottom:12px;">Galeria — Sessão de Fotos</h2>
-
-  <div class="slideshow" id="slideshow">
-    <div class="slide active">
-      <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1600" alt="">
-    </div>
-
-    <div class="slide">
-      <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1600" alt="">
-    </div>
-
-    <div class="slide">
-      <img src="https://images.unsplash.com/photo-1526045431048-e56f9377fbf3?q=80&w=1600" alt="">
-    </div>
-  </div>
-
-  <div class="dots" id="dots"></div>
-</section>
-
-
-<!-- SERVIÇOS -->
-<section id="servicos" class="reveal" style="padding:34px 5vw;">
-  <h2 style="color:var(--gold);margin-bottom:16px;">Nossos Serviços</h2>
-
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;">
-    <div class="team-card">
-      <h3 style="color:var(--gold);margin-bottom:8px;">Corte Feminino</h3>
-      <p style="color:#d6ccb4">Cortes modernos e personalizados.</p>
-    </div>
-
-    <div class="team-card">
-      <h3 style="color:var(--gold);margin-bottom:8px;">Coloração & Mechas</h3>
-      <p style="color:#d6ccb4">Luzes, balayage, mechas perfeitas.</p>
-    </div>
-
-    <div class="team-card">
-      <h3 style="color:var(--gold);margin-bottom:8px;">Escova & Finalização</h3>
-      <p style="color:#d6ccb4">Brilho e movimento profissional.</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- EQUIPE -->
-<section id="equipe" class="reveal" style="padding:34px 5vw;">
-  <h2 style="color:var(--gold);margin-bottom:16px;">Nossa Equipe</h2>
-
-  <div class="team-grid">
-
-    <!-- CATY -->
-    <div class="team-card">
-      <div class="team-photo">
-        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800" alt="">
+  <!-- SERVICES -->
+  <section id="services" class="reveal">
+    <div class="section-title">Serviços</div>
+    <div class="services-grid">
+      <div class="service glow">
+        <h4>Corte & Styling</h4>
+        <p>Cortes modernos, consultoria de styling e finalização profissional.</p>
       </div>
-      <div class="team-name">Caty Silva</div>
-      <div class="team-role">Proprietária / Hair Artist</div>
-      <p style="color:#d6ccb4;margin-top:8px;">Especialista em coloração e cortes.</p>
-    </div>
 
-    <!-- FILHA -->
-    <div class="team-card">
-      <div class="team-photo">
-        <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=800" alt="">
+      <div class="service">
+        <h4>Coloração e Luzes</h4>
+        <p>Coloração, balayage, mechas e correções com técnica e segurança.</p>
       </div>
-      <div class="team-name">Mariana Silva</div>
-      <div class="team-role">Assistente</div>
-      <p style="color:#d6ccb4;margin-top:8px;">Finalização e organização técnica.</p>
+
+      <div class="service">
+        <h4>Reconstrução & Tratamentos</h4>
+        <p>Hidratações, cronogramas e tratamentos de alta performance.</p>
+      </div>
+
+      <div class="service">
+        <h4>Escova e Penteados</h4>
+        <p>Escovas, finalizações e penteados para eventos.</p>
+      </div>
+
+      <div class="service">
+        <h4>Alisamentos</h4>
+        <p>Progressivas e tratamentos para redução de volume.</p>
+      </div>
+
+      <div class="service">
+        <h4>Consultoria de Imagem</h4>
+        <p>Indicação de cortes e cores que valorizam seu rosto e estilo.</p>
+      </div>
     </div>
+  </section>
 
+  <!-- GALLERY (AUTO SLIDESHOW) -->
+  <section id="gallery" class="reveal">
+    <div class="section-title">Galeria</div>
+
+    <div class="slideshow" id="slideshow">
+      <div class="slide active"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1600&auto=format&fit=crop" alt=""></div>
+      <div class="slide"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1600&auto=format&fit=crop" alt=""></div>
+      <div class="slide"><img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1600&auto=format&fit=crop" alt=""></div>
+    </div>
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" class="reveal">
+    <div class="section-title">Nossa Equipe</div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-photo"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800" alt="Caty"></div>
+        <div style="font-weight:700;color:var(--gold)">Caty Silva</div>
+        <div style="color:var(--muted);margin-bottom:8px">Proprietária • Hair Artist</div>
+        <div style="color:var(--muted)">Especialista em coloração, luzes e cortes personalizados com foco na saúde do fio.</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo"><img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=800" alt="Assistente"></div>
+        <div style="font-weight:700;color:var(--gold)">Mariana Silva</div>
+        <div style="color:var(--muted);margin-bottom:8px">Assistente • Styling</div>
+        <div style="color:var(--muted)">Auxilia nos atendimentos, finalizações e na experiência do cliente.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="reveal">
+    <div class="section-title">Contato</div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <p style="color:var(--muted)">Quer agendar ou solicitar orçamento? Mande uma mensagem no WhatsApp ou preencha abaixo.</p>
+        <p style="margin:8px 0"><strong>WhatsApp:</strong> <a href="https://wa.me/5521980722830" style="color:var(--gold)">+55 21 98072-2830</a></p>
+        <form id="contactForm" style="margin-top:8px">
+          <input id="fname" class="input" placeholder="Seu nome" />
+          <input id="fphone" class="input" placeholder="Telefone" style="margin-top:10px"/>
+          <textarea id="fmsg" class="textarea" rows="4" placeholder="Mensagem" style="margin-top:10px"></textarea>
+          <div style="display:flex;gap:10px;margin-top:12px">
+            <button type="button" id="sendContact" class="send">Enviar WhatsApp</button>
+            <button type="reset" class="btn ghost" style="border:1px solid rgba(255,255,255,0.04)">Limpar</button>
+          </div>
+        </form>
+      </div>
+
+      <div style="min-width:260px">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800" style="width:100%;border-radius:12px;border:1px solid rgba(255,255,255,0.03)" alt="studio">
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FLOATING ACTIONS -->
+<div class="fabs" aria-hidden="false">
+  <a class="fab whatsapp" href="https://wa.me/5521980722830" target="_blank" title="WhatsApp">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/whatsapp/whatsapp-original.svg" style="width:26px">
+  </a>
+  <a class="fab ig" href="https://instagram.com/_catyhair" target="_blank" title="Instagram">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" style="width:26px">
+  </a>
+</div>
+
+<!-- CHAT -->
+<div class="chat-toggle" id="chatToggle" title="Atendimento">💬</div>
+
+<div class="chat-panel" id="chatPanel" aria-hidden="true">
+  <div class="chat-header">Atendimento • Caty Hair</div>
+  <div class="chat-body" id="chatBody">
+    <div class="msg bot">Olá! Eu sou a Caty (assistente). Quer orçamento? Escolha serviço e depois abra o WhatsApp.</div>
   </div>
-</section>
 
+  <div class="chat-footer">
+    <div style="width:100%">
+      <div style="display:flex;gap:8px;margin-bottom:8px">
+        <select id="chatService" class="select small">
+          <option value="">Serviço</option>
+          <option>Corte</option>
+          <option>Escova</option>
+          <option>Coloração</option>
+          <option>Luzes</option>
+          <option>Tratamento</option>
+        </select>
+        <select id="chatTime" class="select small">
+          <option value="">Horário</option>
+          <option>Manhã</option>
+          <option>Tarde</option>
+          <option>Noite</option>
+        </select>
+      </div>
 
-<!-- CONTATO -->
-<section id="contato" class="reveal" style="padding:34px 5vw;text-align:center;">
-  <h2 style="color:var(--gold);margin-bottom:10px;">Contato</h2>
+      <div style="display:flex;gap:8px">
+        <input id="chatName" class="input" placeholder="Seu nome (opcional)"/>
+        <button id="chatSend" class="btn primary" style="padding:10px 12px">Abrir WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <p style="color:#ccc;margin-bottom:6px;">
-    WhatsApp:
-    <a href="https://wa.me/5521980722830" target="_blank" style="color:var(--gold);font-weight:700;">
-      +55 21 98072-2830
-    </a>
-  </p>
-
-  <p style="color:#ccc;">
-    Instagram:
-    <a href="https://instagram.com/_catyhair" target="_blank" style="color:var(--gold);font-weight:700;">
-      @_catyhair
-    </a>
-  </p>
-</section>
-
-<footer style="text-align:center;color:var(--gold);padding:20px;">
-  © <span id="year"></span> Studio Caty Hair — Todos os direitos reservados.
+<footer style="padding:24px 6vw;color:var(--muted);text-align:center">
+  © <span id="yr"></span> Studio Caty Hair — Todos os direitos reservados.
 </footer>
 
-<!-- FIM DA PARTE 2 -->
- <!-- BOTÕES FLUTUANTES -->
-<div style="position:fixed;left:14px;bottom:90px;display:flex;flex-direction:column;gap:10px;z-index:900;">
-  <a href="https://wa.me/5521980722830" target="_blank" style="width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#25D366;">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/whatsapp/whatsapp-original.svg" style="width:26px;">
-  </a>
-
-  <a href="https://instagram.com/_catyhair" target="_blank" style="width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#E1306C;">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" style="width:26px;">
-  </a>
-</div>
-
-
-<!-- CHATBOT -->
-<div class="chat-bot" style="position:fixed;right:20px;bottom:20px;z-index:999;">
-
-  <!-- JANELA -->
-  <div class="chat-window" id="chatWindow" style="
-    width:340px;max-width:92vw;height:420px;background:#0a0a0a;
-    border-radius:14px;overflow:hidden;border:2px solid rgba(215,185,89,0.3);
-    display:none;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.7);
-  ">
-    <div class="chat-header" style="display:flex;align-items:center;gap:10px;padding:12px;border-bottom:1px solid rgba(255,255,255,0.1);">
-      <img src="https://i.imgur.com/yesZiJ2.jpeg" style="width:46px;height:46px;border-radius:10px;border:2px solid var(--gold);object-fit:cover;">
-      <div>
-        <div style="color:var(--gold);font-weight:700;">Atendimento - Caty Hair</div>
-        <div style="color:#aaa;font-size:12px;">Responde em minutos</div>
-      </div>
-    </div>
-
-    <div id="chatBody" style="flex:1;padding:12px;overflow:auto;display:flex;flex-direction:column;gap:8px;">
-      <div class="msg bot" style="padding:10px;border-radius:10px;background:rgba(215,185,89,0.12);">
-        Olá! Sou a Caty. Como posso ajudar? 😊
-      </div>
-    </div>
-
-    <div id="chatFooter" style="padding:10px;border-top:1px solid rgba(255,255,255,0.1);display:none;gap:8px;">
-      <input id="chatInput" placeholder="Digite seu nome..." style="flex:1;padding:10px;border-radius:10px;border:none;background:#222;color:#fff;">
-      <button id="sendBtn" style="padding:10px 12px;background:var(--gold);border-radius:10px;border:none;color:#000;font-weight:700;">Enviar</button>
-    </div>
-  </div>
-
-  <!-- BOTÃO -->
-  <div id="chatToggle" style="
-    width:60px;height:60px;display:flex;align-items:center;justify-content:center;
-    background:var(--gold);border-radius:50%;font-size:22px;color:#000;font-weight:700;cursor:pointer;
-    box-shadow:0 12px 40px rgba(0,0,0,0.6);
-  ">💬</div>
-
-</div>
-
-
-<!-- SCRIPTS -->
 <script>
-document.getElementById("year").textContent = new Date().getFullYear();
+/* ========== Year ========== */
+document.getElementById('yr').textContent = new Date().getFullYear();
 
-/* VIDEO */
-const video = document.getElementById("videoCaty");
-const soundBtn = document.getElementById("soundBtn");
-
-if(video){
-  video.muted = true;
-  video.playsInline = true;
-
-  const observer = new IntersectionObserver(entries=>{
+/* ========== Page reveal ========== */
+document.querySelectorAll('.reveal').forEach(el=>{
+  const io = new IntersectionObserver(entries=>{
     entries.forEach(e=>{
-      if(e.isIntersecting) video.play();
-      else video.pause();
+      if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
     });
-  },{threshold:0.4});
-
-  observer.observe(video);
-}
-
-soundBtn.onclick = ()=>{
-  video.muted = false;
-  video.volume = 1;
-  soundBtn.style.display = "none";
-};
-
-/* REVEAL */
-const reveals = document.querySelectorAll(".reveal");
-const obs = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting) e.target.classList.add("show");
-  });
-},{threshold:0.2});
-reveals.forEach(el=>obs.observe(el));
-
-/* SLIDESHOW */
-const slides = document.querySelectorAll(".slide");
-const dots = document.getElementById("dots");
-let index = 0;
-
-slides.forEach((_,i)=>{
-  let d = document.createElement("div");
-  d.className = "dot" + (i==0?" active":"");
-  d.onclick = ()=>go(i);
-  dots.appendChild(d);
+  }, {threshold:0.18});
+  io.observe(el);
 });
 
-function show(n){
-  slides.forEach(s=>s.classList.remove("active"));
-  slides[n].classList.add("active");
-
-  dots.childNodes.forEach(d=>d.classList.remove("active"));
-  dots.childNodes[n].classList.add("active");
-}
-
-function next(){ index = (index+1) % slides.length; show(index); }
-function go(n){ index = n; show(index); }
-
-setInterval(next, 3500);
-
-
-/* CHATBOT */
-const chatToggle = document.getElementById("chatToggle");
-const chatWindow = document.getElementById("chatWindow");
-const chatFooter = document.getElementById("chatFooter");
-const chatBody = document.getElementById("chatBody");
-const chatInput = document.getElementById("chatInput");
-const sendBtn = document.getElementById("sendBtn");
-const agendarBtn = document.getElementById("agendarBtn");
-
-function openChat(){
-  chatWindow.style.display = "flex";
-  chatToggle.textContent = "✕";
-}
-function closeChat(){
-  chatWindow.style.display = "none";
-  chatToggle.textContent = "💬";
-}
-
-chatToggle.onclick = ()=> chatWindow.style.display==="flex" ? closeChat() : openChat();
-agendarBtn.onclick = ()=>{ openChat(); startFlow(); };
-
-function append(text, who="bot"){
-  const div = document.createElement("div");
-  div.className = "msg " + who;
-  div.style.padding = "10px";
-  div.style.borderRadius = "10px";
-  div.style.marginBottom = "8px";
-  div.textContent = text;
-  div.style.background = who==="bot" ? "rgba(215,185,89,0.12)" : "rgba(255,255,255,0.08)";
-  chatBody.appendChild(div);
-  chatBody.scrollTop = chatBody.scrollHeight;
-}
-
-function startFlow(){
-  chatBody.innerHTML = "";
-  append("Qual serviço você deseja hoje? 😊");
-
-  let servicos = [
-    "Corte Feminino",
-    "Escova & Finalização",
-    "Progressiva",
-    "Luzes / Mechas",
-    "Coloração",
-    "Tratamento Capilar"
-  ];
-
-  const box = document.createElement("div");
-  box.style.display = "flex";
-  box.style.flexDirection = "column";
-  box.style.gap = "8px";
-
-  servicos.forEach(s=>{
-    let b = document.createElement("button");
-    b.textContent = s;
-    b.style.padding = "10px";
-    b.style.background = "rgba(255,255,255,0.05)";
-    b.style.border = "1px solid rgba(255,255,255,0.15)";
-    b.style.color = "var(--gold)";
-    b.style.borderRadius = "8px";
-    b.style.cursor = "pointer";
-
-    b.onclick = ()=>{
-      append(s,"user");
-      box.remove();
-      askName(s);
-    };
-
-    box.appendChild(b);
+/* ========== Hero subtle scale on hover ========== */
+const hero = document.querySelector('.hero');
+const heroBg = document.querySelector('.hero-bg');
+if(hero && heroBg){
+  hero.addEventListener('mousemove', (e)=>{
+    const r = hero.getBoundingClientRect();
+    const x = (e.clientX - r.left)/r.width - 0.5;
+    const y = (e.clientY - r.top)/r.height - 0.5;
+    heroBg.style.transform = `translate(${x*6}px, ${y*6}px) scale(1.06)`;
   });
-
-  const wrap = document.createElement("div");
-  wrap.className = "msg bot";
-  wrap.style.padding = "10px";
-  wrap.style.borderRadius = "10px";
-  wrap.style.background = "rgba(215,185,89,0.12)";
-  wrap.appendChild(box);
-
-  chatBody.appendChild(wrap);
-  chatBody.scrollTop = chatBody.scrollHeight;
+  hero.addEventListener('mouseleave', ()=> heroBg.style.transform = 'scale(1.04)');
 }
 
-function askName(servico){
-  append("Perfeito! Qual é o seu nome?");
-  chatFooter.style.display = "flex";
+/* ========== Video controls (autoplay/pause on view) ========== */
+const heroVideo = document.getElementById('heroVideo');
+const soundBtn = document.getElementById('soundBtn');
+if(heroVideo){
+  heroVideo.muted = true;
+  heroVideo.playsInline = true;
+  const vidObs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) heroVideo.play().catch(()=>{});
+      else heroVideo.pause();
+    });
+  }, {threshold:0.35});
+  vidObs.observe(heroVideo);
+}
+if(soundBtn){
+  soundBtn.addEventListener('click', ()=>{
+    heroVideo.muted = false;
+    heroVideo.volume = 1;
+    soundBtn.style.display = 'none';
+    heroVideo.play().catch(()=>{});
+  });
+}
 
-  function send(){
-    const name = chatInput.value.trim();
-    if(!name) return;
-    append(name,"user");
-    chatInput.value = "";
-    chatFooter.style.display = "none";
-    finish(servico,name);
-    sendBtn.removeEventListener("click", send);
+/* ========== Slideshow ========== */
+(function(){
+  const slides = Array.from(document.querySelectorAll('.slideshow .slide'));
+  const dotsWrap = document.getElementById('dots');
+  let idx = 0, timer = null, INTERVAL = 3600;
+  slides.forEach((s,i)=>{
+    const d = document.createElement('div');
+    d.className = 'dot'+(i===0?' active':'');
+    d.addEventListener('click', ()=> go(i));
+    dotsWrap.appendChild(d);
+  });
+  function show(i){
+    slides.forEach((s,ii)=> s.classList.toggle('active', ii===i));
+    Array.from(dotsWrap.children).forEach((d,ii)=> d.classList.toggle('active', ii===i));
   }
+  function next(){ idx = (idx+1)%slides.length; show(idx); }
+  function go(i){ idx=i; show(idx); reset(); }
+  function reset(){ if(timer) clearInterval(timer); timer = setInterval(next, INTERVAL); }
+  show(idx); reset();
+  // pause when not visible
+  const slideshow = document.getElementById('slideshow');
+  if(slideshow){
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) reset(); else clearInterval(timer);
+      });
+    }, {threshold:0.2});
+    obs.observe(slideshow);
+  }
+})();
 
-  sendBtn.addEventListener("click", send);
+/* ========== Floating actions adjustments on small screens ========== */
+(function(){
+  const fabs = document.querySelector('.fabs');
+  function adjust(){
+    if(window.innerWidth < 520){
+      fabs.style.left = '10px';
+      fabs.style.bottom = '80px';
+    } else {
+      fabs.style.left = '14px';
+      fabs.style.bottom = '16px';
+    }
+  }
+  adjust();
+  window.addEventListener('resize', adjust);
+})();
+
+/* ========== Chat logic ========== */
+const chatToggle = document.getElementById('chatToggle');
+const chatPanel = document.getElementById('chatPanel');
+const chatBody = document.getElementById('chatBody');
+const chatSend = document.getElementById('chatSend');
+const chatService = document.getElementById('chatService');
+const chatTime = document.getElementById('chatTime');
+const chatName = document.getElementById('chatName');
+
+function pushBot(text){
+  const d = document.createElement('div'); d.className='msg bot'; d.innerText=text; chatBody.appendChild(d); chatBody.scrollTop = chatBody.scrollHeight;
+}
+function pushUser(text){
+  const d = document.createElement('div'); d.className='msg user'; d.innerText=text; chatBody.appendChild(d); chatBody.scrollTop = chatBody.scrollHeight;
 }
 
-function finish(servico,nome){
-  const mensagem = `Olá! Meu nome é ${nome}. Gostaria de agendar: ${servico}.`;
+chatToggle.addEventListener('click', ()=>{
+  if(chatPanel.classList.contains('open')){ chatPanel.classList.remove('open'); }
+  else { chatPanel.classList.add('open'); pushBot('Olá! 😊 Escolha serviço e horário e depois abra o WhatsApp.'); }
+});
 
-  append("Prontinho! Clique abaixo para enviar no WhatsApp:");
+// open from CTA
+document.getElementById('btnWhats').addEventListener('click', (e)=>{
+  e.preventDefault();
+  chatPanel.classList.add('open');
+  pushBot('Vamos iniciar seu orçamento — selecione o serviço e o horário.');
+  setTimeout(()=> document.getElementById('chatService').focus(), 260);
+});
 
-  let box = document.createElement("div");
-  box.innerHTML = `
-    <a href="https://wa.me/5521980722830?text=${encodeURIComponent(mensagem)}"
-       target="_blank"
-       style="display:inline-block;margin-top:10px;padding:10px 12px;background:var(--gold);
-       color:#000;border-radius:10px;font-weight:700;">
-       Enviar para WhatsApp
-    </a>
-  `;
+// open main booking that links to contact
+document.getElementById('ctaBook').addEventListener('click', ()=> {
+  document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+});
 
-  chatBody.appendChild(box);
-  chatBody.scrollTop = chatBody.scrollHeight;
-}
+// open whatsapp from chat
+chatSend.addEventListener('click', ()=>{
+  const service = chatService.value.trim();
+  const time = chatTime.value.trim();
+  const name = (chatName.value || '').trim();
+  if(!service || !time){
+    pushBot('Por favor selecione o serviço e horário antes de abrir o WhatsApp.');
+    // highlight missing
+    [chatService, chatTime].forEach(el=>{ if(!el.value){ el.style.boxShadow='0 0 0 3px rgba(255,0,0,0.12)'; setTimeout(()=>el.style.boxShadow='',700); } });
+    return;
+  }
+  pushUser(`${service} • ${time}${name?(' • '+name):''}`);
+  pushBot('Perfeito — abrindo o WhatsApp com a mensagem pronta.');
+  let msg = `Olá! Gostaria de um orçamento para *${service}*.\nHorário preferido: *${time}*.\n`;
+  if(name) msg += `Nome: ${name}\n`;
+  msg += '\nVim pelo site: Studio Caty Hair.';
+  window.open(`https://wa.me/5521980722830?text=${encodeURIComponent(msg)}`,'_blank');
+});
 
+/* ========== Contact form to WhatsApp ========== */
+document.getElementById('sendContact').addEventListener('click', ()=>{
+  const n = document.getElementById('fname').value.trim();
+  const p = document.getElementById('fphone').value.trim();
+  const m = document.getElementById('fmsg').value.trim();
+  let text = 'Olá! Gostaria de um orçamento.\n';
+  if(n) text += `Nome: ${n}\n`;
+  if(p) text += `Telefone: ${p}\n`;
+  if(m) text += `Mensagem: ${m}\n`;
+  text += '\nVim pelo site.';
+  window.open(`https://wa.me/5521980722830?text=${encodeURIComponent(text)}`,'_blank');
+});
+
+/* ========== small initial prompt ========== */
+setTimeout(()=> pushBot('Olá! Precisa de um orçamento? Clique no botão 💬 ou use o "Pedir Orçamento".'),900);
+
+/* ========== accessibility - close with ESC ========== */
+document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') chatPanel.classList.remove('open'); });
 </script>
-
 </body>
 </html>
