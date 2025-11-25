@@ -164,7 +164,6 @@ section{padding:64px 6vw}
   font-weight: 600;
   width: 100%;
   cursor: pointer;
-  position: relative;
   font-size: 15px;
   transition: .25s;
 }
@@ -179,39 +178,59 @@ section{padding:64px 6vw}
   box-shadow: 0 0 0 2px rgba(215,185,89,0.25);
 }
 
-/* A seta customizada */
 .select-wrapper {
   position: relative;
   width: 100%;
 }
 
 .select-wrapper::after {
-  content: "▼";
+  content: "▾";
   position: absolute;
   right: 14px;
   top: 50%;
   transform: translateY(-50%);
   color: #d7b959;
-  font-size: 12px;
+  font-size: 14px;
   pointer-events: none;
 }
 
 /* MOBILE FIX */
-@media(max-width:520px){
-  .chat-footer .select {
+@media (max-width: 520px){
+  .select {
     font-size: 16px;
     padding: 14px 16px;
   }
 
   .select-wrapper::after {
     right: 18px;
-    font-size: 14px;
+    font-size: 16px;
   }
 }
+
+/* BACKDROP ESCURECIDO AO ABRIR CHAT */
+.chat-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+  z-index: 2400;
+}
+
+.chat-backdrop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 
 </style>
 </head>
 <body>
+
+    <div id="chatBackdrop" class="chat-backdrop"></div>
+
 
 <!-- HEADER -->
 <header>
@@ -412,7 +431,10 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 document.querySelectorAll('.reveal').forEach(el=>{
   const io = new IntersectionObserver(entries=>{
     entries.forEach(e=>{
-      if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+      if(e.isIntersecting){ 
+        e.target.classList.add('show'); 
+        io.unobserve(e.target);
+      }
     });
   }, {threshold:0.18});
   io.observe(el);
@@ -421,6 +443,7 @@ document.querySelectorAll('.reveal').forEach(el=>{
 /* ========== Hero subtle scale on hover ========== */
 const hero = document.querySelector('.hero');
 const heroBg = document.querySelector('.hero-bg');
+
 if(hero && heroBg){
   hero.addEventListener('mousemove', (e)=>{
     const r = hero.getBoundingClientRect();
@@ -428,23 +451,30 @@ if(hero && heroBg){
     const y = (e.clientY - r.top)/r.height - 0.5;
     heroBg.style.transform = `translate(${x*6}px, ${y*6}px) scale(1.06)`;
   });
-  hero.addEventListener('mouseleave', ()=> heroBg.style.transform = 'scale(1.04)');
+
+  hero.addEventListener('mouseleave', ()=> 
+    heroBg.style.transform = 'scale(1.04)'
+  );
 }
 
-/* ========== Video controls (autoplay/pause on view) ========== */
+/* ========== Video autoplay on visibility ========== */
 const heroVideo = document.getElementById('heroVideo');
 const soundBtn = document.getElementById('soundBtn');
+
 if(heroVideo){
   heroVideo.muted = true;
   heroVideo.playsInline = true;
+
   const vidObs = new IntersectionObserver(entries=>{
     entries.forEach(e=>{
       if(e.isIntersecting) heroVideo.play().catch(()=>{});
       else heroVideo.pause();
     });
   }, {threshold:0.35});
+
   vidObs.observe(heroVideo);
 }
+
 if(soundBtn){
   soundBtn.addEventListener('click', ()=>{
     heroVideo.muted = false;
@@ -459,33 +489,39 @@ if(soundBtn){
   const slides = Array.from(document.querySelectorAll('.slideshow .slide'));
   const dotsWrap = document.getElementById('dots');
   let idx = 0, timer = null, INTERVAL = 3600;
+
   slides.forEach((s,i)=>{
     const d = document.createElement('div');
     d.className = 'dot'+(i===0?' active':'');
     d.addEventListener('click', ()=> go(i));
     dotsWrap.appendChild(d);
   });
+
   function show(i){
     slides.forEach((s,ii)=> s.classList.toggle('active', ii===i));
     Array.from(dotsWrap.children).forEach((d,ii)=> d.classList.toggle('active', ii===i));
   }
+
   function next(){ idx = (idx+1)%slides.length; show(idx); }
   function go(i){ idx=i; show(idx); reset(); }
   function reset(){ if(timer) clearInterval(timer); timer = setInterval(next, INTERVAL); }
-  show(idx); reset();
-  // pause when not visible
+
+  show(idx);
+  reset();
+
   const slideshow = document.getElementById('slideshow');
   if(slideshow){
     const obs = new IntersectionObserver(entries=>{
       entries.forEach(e=>{
-        if(e.isIntersecting) reset(); else clearInterval(timer);
+        if(e.isIntersecting) reset();
+        else clearInterval(timer);
       });
     }, {threshold:0.2});
     obs.observe(slideshow);
   }
 })();
 
-/* ========== Floating actions adjustments on small screens ========== */
+/* ========== Floating action buttons (mobile adjust) ========== */
 (function(){
   const fabs = document.querySelector('.fabs');
   function adjust(){
@@ -501,77 +537,123 @@ if(soundBtn){
   window.addEventListener('resize', adjust);
 })();
 
-/* ========== Chat logic ========== */
+/* ============================================================
+   ===================== CHAT SYSTEM ===========================
+   ============================================================ */
+
 const chatToggle = document.getElementById('chatToggle');
-const chatPanel = document.getElementById('chatPanel');
-const chatBody = document.getElementById('chatBody');
-const chatSend = document.getElementById('chatSend');
+const chatPanel  = document.getElementById('chatPanel');
+const chatBody   = document.getElementById('chatBody');
+const chatSend   = document.getElementById('chatSend');
 const chatService = document.getElementById('chatService');
-const chatTime = document.getElementById('chatTime');
-const chatName = document.getElementById('chatName');
+const chatName   = document.getElementById('chatName');
+const chatBackdrop = document.getElementById('chatBackdrop');
 
 function pushBot(text){
-  const d = document.createElement('div'); d.className='msg bot'; d.innerText=text; chatBody.appendChild(d); chatBody.scrollTop = chatBody.scrollHeight;
+  const d = document.createElement('div');
+  d.className='msg bot';
+  d.innerText=text;
+  chatBody.appendChild(d);
+  chatBody.scrollTop = chatBody.scrollHeight;
 }
+
 function pushUser(text){
-  const d = document.createElement('div'); d.className='msg user'; d.innerText=text; chatBody.appendChild(d); chatBody.scrollTop = chatBody.scrollHeight;
+  const d = document.createElement('div');
+  d.className='msg user';
+  d.innerText=text;
+  chatBody.appendChild(d);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+/* ========== OPEN CHAT WITH DARK BACKDROP ========== */
+function openChat(initialMessage){
+  chatPanel.classList.add('open');
+  chatBackdrop.classList.add('show');
+
+  if(initialMessage) pushBot(initialMessage);
+}
+
+function closeChat(){
+  chatPanel.classList.remove('open');
+  chatBackdrop.classList.remove('show');
 }
 
 chatToggle.addEventListener('click', ()=>{
-  if(chatPanel.classList.contains('open')){ chatPanel.classList.remove('open'); }
-  else { chatPanel.classList.add('open'); pushBot('Olá! 😊 Escolha serviço e horário e depois abra o WhatsApp.'); }
+  if(chatPanel.classList.contains('open')){
+    closeChat();
+  } else {
+    openChat("Olá! 😊 Escolha o serviço e digite seu nome (opcional).");
+  }
 });
 
-// open from CTA
+chatBackdrop.addEventListener('click', closeChat);
+
+/* ========== CTA opens chat ========== */
 document.getElementById('btnWhats').addEventListener('click', (e)=>{
   e.preventDefault();
-  chatPanel.classList.add('open');
-  pushBot('Vamos iniciar seu orçamento — selecione o serviço e o horário.');
-  setTimeout(()=> document.getElementById('chatService').focus(), 260);
+  openChat("Vamos começar seu orçamento! Selecione o serviço e preencha seu nome.");
+  setTimeout(()=> chatService.focus(), 260);
 });
 
-// open main booking that links to contact
+/* ========== Contact CTA scroll ========== */
 document.getElementById('ctaBook').addEventListener('click', ()=> {
   document.getElementById('contact').scrollIntoView({behavior:'smooth'});
 });
 
-// open whatsapp from chat
+/* ========== SEND TO WHATSAPP ========== */
 chatSend.addEventListener('click', ()=>{
+
   const service = chatService.value.trim();
-  const time = chatTime.value.trim();
-  const name = (chatName.value || '').trim();
-  if(!service || !time){
-    pushBot('Por favor selecione o serviço e horário antes de abrir o WhatsApp.');
-    // highlight missing
-    [chatService, chatTime].forEach(el=>{ if(!el.value){ el.style.boxShadow='0 0 0 3px rgba(255,0,0,0.12)'; setTimeout(()=>el.style.boxShadow='',700); } });
+  const name = chatName.value.trim();
+
+  if(!service){
+    pushBot('Por favor selecione o serviço antes de abrir o WhatsApp.');
+    chatService.style.boxShadow='0 0 0 3px rgba(255,0,0,0.12)';
+    setTimeout(()=> chatService.style.boxShadow='',700);
     return;
   }
-  pushUser(`${service} • ${time}${name?(' • '+name):''}`);
+
+  pushUser(`${service}${name ? (' • ' + name) : ''}`);
   pushBot('Perfeito — abrindo o WhatsApp com a mensagem pronta.');
-  let msg = `Olá! Gostaria de um orçamento para *${service}*.\nHorário preferido: *${time}*.\n`;
+
+  let msg = `Olá! Gostaria de um orçamento para *${service}*.\n`;
   if(name) msg += `Nome: ${name}\n`;
-  msg += '\nVim pelo site: Studio Caty Hair.';
-  window.open(`https://wa.me/5521980722830?text=${encodeURIComponent(msg)}`,'_blank');
+  msg += `\nVim pelo site: Studio Caty Hair.`;
+
+  window.open(
+    `https://wa.me/5521980722830?text=${encodeURIComponent(msg)}`,
+    '_blank'
+  );
 });
 
-/* ========== Contact form to WhatsApp ========== */
+/* ========== CONTACT FORM WHATSAPP ========== */
 document.getElementById('sendContact').addEventListener('click', ()=>{
   const n = document.getElementById('fname').value.trim();
   const p = document.getElementById('fphone').value.trim();
   const m = document.getElementById('fmsg').value.trim();
-  let text = 'Olá! Gostaria de um orçamento.\n';
+
+  let text = `Olá! Gostaria de um orçamento.\n`;
   if(n) text += `Nome: ${n}\n`;
   if(p) text += `Telefone: ${p}\n`;
   if(m) text += `Mensagem: ${m}\n`;
-  text += '\nVim pelo site.';
-  window.open(`https://wa.me/5521980722830?text=${encodeURIComponent(text)}`,'_blank');
+  text += `\nVim pelo site.`;
+
+  window.open(
+    `https://wa.me/5521980722830?text=${encodeURIComponent(text)}`,
+    '_blank'
+  );
 });
 
-/* ========== small initial prompt ========== */
-setTimeout(()=> pushBot('Olá! Precisa de um orçamento? Clique no botão 💬 ou use o "Pedir Orçamento".'),900);
+/* ========== Initial Helper Message ========== */
+setTimeout(()=> 
+  pushBot("Olá! Precisa de um orçamento? Clique no botão 💬 ou use o 'Pedir Orçamento'!"),
+900);
 
-/* ========== accessibility - close with ESC ========== */
-document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') chatPanel.classList.remove('open'); });
+/* ========== Accessibility: ESC closes chat ========== */
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape') closeChat();
+});
 </script>
+
 </body>
 </html>
