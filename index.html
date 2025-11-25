@@ -7,6 +7,10 @@
 <link rel="icon" href="https://i.imgur.com/EN4ndEj.png" />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
+
+/* =========================================================
+   🎨 1. ROOT VARIABLES
+========================================================= */
 :root{
   --bg:#060405;
   --panel:#0f0f10;
@@ -16,232 +20,648 @@
   --glass: rgba(255,255,255,0.03);
   --card-shadow: 0 20px 60px rgba(215,185,89,0.08);
 }
-*{box-sizing:border-box;font-family:'Poppins',sans-serif}
-html {scroll-behavior:smooth}
+
+*{
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+html{ scroll-behavior:smooth; }
+
 body{
-  margin:0;background:linear-gradient(180deg,#040404,#090606);
-  color:#fff;min-height:100vh;-webkit-font-smoothing:antialiased;
+  margin:0;
+  background:linear-gradient(180deg,#040404,#090606);
+  color:#fff;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
 }
 
-/* HEADER */
+
+
+/* =========================================================
+   🧭 2. HEADER
+========================================================= */
 header{
-  position:fixed;top:0;left:0;right:0;z-index:1200;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 20px;background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.25));
-  border-bottom:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(6px)
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:1200;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 20px;
+  background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.25));
+  border-bottom:1px solid rgba(255,255,255,0.03);
+  backdrop-filter:blur(6px);
 }
-.brand{display:flex;align-items:center;gap:12px}
-.brand img{width:58px;height:58px;object-fit:cover;border-radius:12px;border:2px solid rgba(215,185,89,0.12);background:#000;padding:6px}
-.brand h1{font-size:18px;margin:0;color:var(--gold);letter-spacing:0.6px}
-nav{display:flex;gap:18px;align-items:center}
-nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px 12px;border-radius:8px}
-nav a:hover{color:var(--gold);background:rgba(215,185,89,0.03)}
 
-/* HERO */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand img{
+  width:58px;
+  height:58px;
+  object-fit:cover;
+  border-radius:12px;
+  border:2px solid rgba(215,185,89,0.12);
+  background:#000;
+  padding:6px;
+}
+
+.brand h1{
+  font-size:18px;
+  margin:0;
+  color:var(--gold);
+  letter-spacing:0.6px;
+}
+
+nav{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+
+nav a{
+  color:var(--muted);
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 12px;
+  border-radius:8px;
+}
+
+nav a:hover{
+  color:var(--gold);
+  background:rgba(215,185,89,0.03);
+}
+
+
+
+/* =========================================================
+   🌅 3. HERO
+========================================================= */
+
 .hero{
-  height:86vh;min-height:560px;display:flex;align-items:center;padding:0 6vw;gap:36px;
-  margin-top:86px;position:relative;overflow:hidden;
+  height:86vh;
+  min-height:560px;
+  display:flex;
+  align-items:center;
+  padding:0 6vw;
+  gap:36px;
+  margin-top:86px;
+  position:relative;
+  overflow:hidden;
 }
+
 .hero-bg{
-  position:absolute;inset:0;background-position:center;background-size:cover;filter:contrast(1.02) saturate(1.05);
-  transform:scale(1.04);transition:transform .9s ease, filter .6s ease;z-index:0;
+  position:absolute;
+  inset:0;
+  background-position:center;
+  background-size:cover;
+  filter:contrast(1.02) saturate(1.05);
+  transform:scale(1.04);
+  transition:transform .9s ease, filter .6s ease;
+  z-index:0;
 }
+
 .hero::after{
-  content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.38),rgba(0,0,0,0.8));z-index:1;
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,0.38),rgba(0,0,0,0.8));
+  z-index:1;
 }
-.hero-left{z-index:2;max-width:680px}
-.kicker{color:var(--gold);font-weight:700;margin-bottom:10px}
-.title{font-size:48px;line-height:1.02;color:var(--gold);font-weight:800;margin:0 0 12px;text-shadow:0 10px 40px rgba(0,0,0,0.6)}
-.subtitle{color:var(--muted);font-size:16px;margin-bottom:18px;max-width:640px}
-.cta{display:flex;gap:12px}
+
+.hero-left{
+  z-index:2;
+  max-width:680px;
+}
+
+.kicker{
+  color:var(--gold);
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.title{
+  font-size:48px;
+  line-height:1.02;
+  color:var(--gold);
+  font-weight:800;
+  margin:0 0 12px;
+  text-shadow:0 10px 40px rgba(0,0,0,0.6);
+}
+
+.subtitle{
+  color:var(--muted);
+  font-size:16px;
+  margin-bottom:18px;
+  max-width:640px;
+}
+
+.cta{
+  display:flex;
+  gap:12px;
+}
+
 .btn{
-  padding:12px 18px;border-radius:999px;border:2px solid rgba(215,185,89,0.12);
-  font-weight:800;color:var(--gold);background:transparent;cursor:pointer
+  padding:12px 18px;
+  border-radius:999px;
+  border:2px solid rgba(215,185,89,0.12);
+  font-weight:800;
+  color:var(--gold);
+  background:transparent;
+  cursor:pointer;
 }
+
 .btn.primary{
-  background:linear-gradient(90deg,var(--gold),var(--gold-2));color:#000;border-color:var(--gold)
+  background:linear-gradient(90deg,var(--gold),var(--gold-2));
+  color:#000;
+  border-color:var(--gold);
 }
-.btn.ghost{background:rgba(255,255,255,0.03);color:var(--muted);border-color:transparent}
 
-/* VIDEO CARD (right) */
-.hero-right{width:520px;max-width:48%;z-index:2;display:flex;align-items:center;justify-content:center}
+.btn.ghost{
+  background:rgba(255,255,255,0.03);
+  color:var(--muted);
+  border-color:transparent;
+}
+
+
+
+/* =========================================================
+   🎥 4. HERO VIDEO CARD
+========================================================= */
+
+.hero-right{
+  width:520px;
+  max-width:48%;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
 .video-card{
-  width:100%;height:420px;border-radius:18px;overflow:hidden;border:8px solid rgba(215,185,89,0.08);
-  box-shadow:var(--card-shadow);position:relative;background:#000;
+  width:100%;
+  height:420px;
+  border-radius:18px;
+  overflow:hidden;
+  border:8px solid rgba(215,185,89,0.08);
+  background:#000;
+  position:relative;
+  box-shadow:var(--card-shadow);
 }
-.video-card video{width:100%;height:100%;object-fit:cover;display:block}
+
+.video-card video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
 .sound-btn{
-  position:absolute;right:16px;bottom:16px;background:rgba(0,0,0,0.45);border:2px solid var(--gold);
-  color:var(--gold);padding:8px 10px;border-radius:10px;cursor:pointer;z-index:4
+  position:absolute;
+  right:16px;
+  bottom:16px;
+  background:rgba(0,0,0,0.45);
+  border:2px solid var(--gold);
+  color:var(--gold);
+  padding:8px 10px;
+  border-radius:10px;
+  cursor:pointer;
+  z-index:4;
 }
 
-/* SECTIONS */
-main{max-width:1200px;margin:0 auto;padding-bottom:80px}
-section{padding:64px 6vw}
-.section-title{color:var(--gold);font-weight:700;margin-bottom:12px}
 
-/* SERVICES */
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.service{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);min-height:140px}
-.service h4{color:var(--gold);margin:0 0 8px}
-.service p{color:var(--muted);font-size:14px}
 
-/* GALLERY SLIDER (auto) */
-.slideshow{position:relative;height:360px;border-radius:12px;overflow:hidden;border:2px solid rgba(215,185,89,0.06);box-shadow:0 24px 70px rgba(0,0,0,0.6)}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
-.slide.active{opacity:1}
-.slide img{width:100%;height:100%;object-fit:cover}
-.dots{display:flex;gap:10px;justify-content:center;margin-top:12px}
-.dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.12);cursor:pointer}
-.dot.active{background:var(--gold);box-shadow:0 8px 20px rgba(215,185,89,0.12)}
+/* =========================================================
+   📌 5. SECTIONS
+========================================================= */
 
-/* TEAM */
-.team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.team-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);text-align:center}
-.team-photo{width:160px;height:160px;margin:0 auto 12px;border-radius:12px;overflow:hidden;border:6px solid rgba(215,185,89,0.08)}
-.team-photo img{width:100%;height:100%;object-fit:cover}
+main{
+  max-width:1200px;
+  margin:0 auto;
+  padding-bottom:80px;
+}
 
-/* CONTACT */
-.contact-grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
-.contact-card{padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
-.input, .textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.05);background:rgba(255,255,255,0.03);color:var(--muted);outline:none}
-.send{background:var(--gold);color:#000;padding:10px 14px;border-radius:10px;border:none;font-weight:800;cursor:pointer}
+section{
+  padding:64px 6vw;
+}
 
-/* FABS */
-.fabs{position:fixed;left:14px;bottom:16px;display:flex;flex-direction:column;gap:10px;z-index:1500}
-.fab{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 12px 40px rgba(0,0,0,0.6)}
-.fab.whatsapp{background:#25D366;border:4px solid rgba(0,0,0,0.06)}
-.fab.ig{background:#E1306C;border:4px solid rgba(0,0,0,0.06)}
+.section-title{
+  color:var(--gold);
+  font-weight:700;
+  margin-bottom:12px;
+}
 
-/* CHAT */
-.chat-toggle{position:fixed;right:20px;bottom:22px;background:var(--gold);width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#000;font-weight:700;cursor:pointer;z-index:1600;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
-.chat-panel{position:fixed;right:20px;bottom:100px;width:360px;background:linear-gradient(180deg,rgba(10,10,10,0.95),rgba(10,10,10,0.9));border-radius:14px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 40px 100px rgba(0,0,0,0.7);display:flex;flex-direction:column;overflow:hidden;transform:translateY(12px);opacity:0;pointer-events:none;transition:all .28s ease;z-index:1600}
-.chat-panel.open{transform:translateY(0);opacity:1;pointer-events:auto}
-.chat-header{padding:12px;border-bottom:1px solid rgba(255,255,255,0.03);font-weight:700;color:var(--gold)}
-.chat-body{padding:12px;max-height:320px;overflow:auto;display:flex;flex-direction:column;gap:8px}
-.msg{padding:10px;border-radius:10px;max-width:78%}
-.msg.bot{background:linear-gradient(90deg,var(--glass),rgba(255,255,255,0.02));align-self:flex-start;color:#fff;border:1px solid rgba(255,255,255,0.02)}
-.msg.user{background:linear-gradient(90deg, rgba(215,185,89,0.14), rgba(215,185,89,0.08));align-self:flex-end;color:#000}
-.chat-footer{padding:10px;border-top:1px solid rgba(255,255,255,0.03);display:flex;gap:8px}
 
-/* reveal */
-.reveal{opacity:0;transform:translateY(24px);transition:all .9s cubic-bezier(.2,.9,.2,1)}
-.reveal.show{opacity:1;transform:translateY(0)}
 
-/* responsive */
+/* =========================================================
+   ✂️ 6. SERVICES
+========================================================= */
+
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+
+.service{
+  background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+  padding:18px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.03);
+  min-height:140px;
+}
+
+.service h4{
+  color:var(--gold);
+  margin:0 0 8px;
+}
+
+.service p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+
+
+/* =========================================================
+   🖼️ 7. GALLERY SLIDER
+========================================================= */
+
+.slideshow{
+  position:relative;
+  height:360px;
+  border-radius:12px;
+  overflow:hidden;
+  border:2px solid rgba(215,185,89,0.06);
+  box-shadow:0 24px 70px rgba(0,0,0,0.6);
+}
+
+.slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:opacity .9s ease;
+}
+
+.slide.active{ opacity:1; }
+
+.slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.dots{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:12px;
+}
+
+.dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.12);
+  cursor:pointer;
+}
+
+.dot.active{
+  background:var(--gold);
+  box-shadow:0 8px 20px rgba(215,185,89,0.12);
+}
+
+
+
+/* =========================================================
+   👩‍🦰 8. TEAM
+========================================================= */
+
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.team-card{
+  background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+  padding:18px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.03);
+  text-align:center;
+}
+
+.team-photo{
+  width:160px;
+  height:160px;
+  margin:0 auto 12px;
+  border-radius:12px;
+  overflow:hidden;
+  border:6px solid rgba(215,185,89,0.08);
+}
+
+.team-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+
+
+/* =========================================================
+   📝 9. CONTACT
+========================================================= */
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:20px;
+}
+
+.contact-card{
+  padding:18px;
+  border-radius:12px;
+  background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.03);
+}
+
+.input,
+.textarea{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.05);
+  background:rgba(255,255,255,0.03);
+  color:var(--muted);
+  outline:none;
+}
+
+.send{
+  background:var(--gold);
+  color:#000;
+  padding:10px 14px;
+  border-radius:10px;
+  border:none;
+  font-weight:800;
+  cursor:pointer;
+}
+
+
+
+/* =========================================================
+   🔘 10. FLOATING BUTTONS (FABS)
+========================================================= */
+
+.fabs{
+  position:fixed;
+  left:14px;
+  bottom:16px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  z-index:1500;
+}
+
+.fab{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 12px 40px rgba(0,0,0,0.6);
+}
+
+.fab.whatsapp{
+  background:#25D366;
+}
+
+.fab.ig{
+  background:#E1306C;
+}
+
+
+
+/* =========================================================
+   💬 11. CHAT + BACKDROP
+========================================================= */
+
+/* Fundo escurecido atrás do chat */
+.chat-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.65);
+  backdrop-filter:blur(3px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .35s ease;
+  z-index:1000;
+}
+
+.chat-backdrop.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* Botão flutuante */
+.chat-toggle{
+  position:fixed;
+  right:20px;
+  bottom:22px;
+  background:var(--gold);
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  color:#000;
+  cursor:pointer;
+  z-index:2000;
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+}
+
+/* Painel do chat */
+.chat-panel{
+  position:fixed;
+  right:20px;
+  bottom:100px;
+  width:360px;
+  background:linear-gradient(180deg,rgba(10,10,10,0.95),rgba(10,10,10,0.9));
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.04);
+  box-shadow:0 40px 100px rgba(0,0,0,0.7);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  transform:translateY(12px);
+  opacity:0;
+  pointer-events:none;
+  transition:all .28s ease;
+  z-index:2001;
+}
+
+.chat-panel.open{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+
+.chat-header{
+  padding:12px;
+  border-bottom:1px solid rgba(255,255,255,0.03);
+  font-weight:700;
+  color:var(--gold);
+}
+
+.chat-body{
+  padding:12px;
+  max-height:320px;
+  overflow:auto;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.msg{
+  padding:10px;
+  border-radius:10px;
+  max-width:78%;
+}
+
+.msg.bot{
+  background:linear-gradient(90deg,var(--glass),rgba(255,255,255,0.02));
+  border:1px solid rgba(255,255,255,0.02);
+  align-self:flex-start;
+}
+
+.msg.user{
+  background:linear-gradient(90deg,rgba(215,185,89,0.14),rgba(215,185,89,0.08));
+  align-self:flex-end;
+  color:#000;
+}
+
+.chat-footer{
+  padding:10px;
+  border-top:1px solid rgba(255,255,255,0.03);
+  display:flex;
+  gap:8px;
+}
+
+
+
+/* =========================================================
+   ⭐ 12. SELECT DOURADO PREMIUM
+========================================================= */
+
+.select{
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  background:rgba(215,185,89,0.12);
+  border:1px solid rgba(215,185,89,0.35);
+  padding:12px 14px;
+  border-radius:10px;
+  color:#f5e9c0 !important;
+  font-weight:600;
+  width:100%;
+  cursor:pointer;
+  font-size:15px;
+  transition:.25s;
+}
+
+.select:hover{ border-color:var(--gold); }
+
+.select:focus{
+  outline:none;
+  border-color:var(--gold);
+  box-shadow:0 0 0 2px rgba(215,185,89,0.25);
+}
+
+.select-wrapper{
+  position:relative;
+  width:100%;
+}
+
+.select-wrapper::after{
+  content:"▾";
+  position:absolute;
+  right:14px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--gold);
+  font-size:14px;
+  pointer-events:none;
+}
+
+
+
+/* =========================================================
+   📱 13. RESPONSIVE
+========================================================= */
+
 @media(max-width:980px){
-  .hero{flex-direction:column;align-items:flex-start;padding:16px 6vw;height:auto}
-  .hero-right{width:100%}
-  .video-card{height:300px}
-  .team-grid{grid-template-columns:1fr}
-  .contact-grid{grid-template-columns:1fr}
+  .hero{
+    flex-direction:column;
+    align-items:flex-start;
+    padding:16px 6vw;
+    height:auto;
+  }
+  .hero-right{
+    width:100%;
+  }
+  .video-card{
+    height:300px;
+  }
+  .team-grid{
+    grid-template-columns:1fr;
+  }
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
 }
+
 @media(max-width:520px){
-  nav{display:none}
-  header{padding:10px}
-  .title{font-size:26px}
-  .video-card{height:220px;border-radius:12px}
-  .chat-panel{left:12px;right:12px;bottom:72px;width:auto;max-width:calc(100% - 24px)}
-  .fab{width:48px;height:48px}
-  .chat-toggle{width:56px;height:56px;right:14px;bottom:12px}
-}
-
-/* scrollbar */
-::-webkit-scrollbar{width:10px}
-::-webkit-scrollbar-track{background:#090909}
-::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--gold),#b8924a);border-radius:10px}
-
-/* SELECT PREMIUM DOURADO */
-.select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background: rgba(215,185,89,0.12);
-  border: 1px solid rgba(215,185,89,0.35);
-  padding: 12px 14px;
-  border-radius: 10px;
-  color: #f5e9c0 !important;
-  font-weight: 600;
-  width: 100%;
-  cursor: pointer;
-  font-size: 15px;
-  transition: .25s;
-}
-
-.select:hover {
-  border-color: #d7b959;
-}
-
-.select:focus {
-  outline: none;
-  border-color: #d7b959;
-  box-shadow: 0 0 0 2px rgba(215,185,89,0.25);
-}
-
-.select-wrapper {
-  position: relative;
-  width: 100%;
-}
-
-.select-wrapper::after {
-  content: "▾";
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #d7b959;
-  font-size: 14px;
-  pointer-events: none;
-}
-
-/* MOBILE FIX */
-@media (max-width: 520px){
-  .select {
-    font-size: 16px;
-    padding: 14px 16px;
+  nav{ display:none; }
+  header{ padding:10px; }
+  .title{ font-size:26px; }
+  .video-card{ height:220px; border-radius:12px; }
+  .fab{ width:48px; height:48px; }
+  .chat-toggle{
+    width:56px;
+    height:56px;
+    right:14px;
+    bottom:12px;
   }
-
-  .select-wrapper::after {
-    right: 18px;
-    font-size: 16px;
+  .chat-panel{
+    left:12px;
+    right:12px;
+    bottom:72px;
+    width:auto;
+    max-width:calc(100% - 24px);
   }
 }
 
-/* BACKDROP atrás do painel */
-.chat-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(3px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .35s ease;
-  z-index: 1000; /* <<< abaixado */
+
+
+/* =========================================================
+   🖱️ 14. SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar{ width:10px; }
+::-webkit-scrollbar-track{ background:#090909; }
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,var(--gold),#b8924a);
+  border-radius:10px;
 }
-
-/* PAINEL do chat sempre acima */
-.chat-panel {
-  position: fixed;
-  right: 20px;
-  bottom: 100px;
-  width: 360px;
-  background: linear-gradient(180deg, rgba(10,10,10,0.95), rgba(10,10,10,0.9));
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.04);
-  box-shadow: 0 40px 100px rgba(0,0,0,0.7);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transform: translateY(12px);
-  opacity: 0;
-  pointer-events: none;
-  transition: all .28s ease;
-  z-index: 2000; /* <<< agora acima do backdrop */
-}
-
-
 
 </style>
+
 </head>
 <body>
 
@@ -349,15 +769,15 @@ section{padding:64px 6vw}
     <div class="section-title">Nossa Equipe</div>
     <div class="team-grid">
       <div class="team-card">
-        <div class="team-photo"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800" alt="Caty"></div>
-        <div style="font-weight:700;color:var(--gold)">Caty Silva</div>
+        <div class="team-photo"><img src="https://i.imgur.com/UxcAgGU.jpeg" alt="Caty"></div>
+        <div style="font-weight:700;color:var(--gold)">Catiana Silva</div>
         <div style="color:var(--muted);margin-bottom:8px">Proprietária • Hair Artist</div>
         <div style="color:var(--muted)">Especialista em coloração, luzes e cortes personalizados com foco na saúde do fio.</div>
       </div>
 
       <div class="team-card">
-        <div class="team-photo"><img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=800" alt="Assistente"></div>
-        <div style="font-weight:700;color:var(--gold)">Mariana Silva</div>
+        <div class="team-photo"><img src="https://i.imgur.com/RudDm0g.png" alt="Assistente"></div>
+        <div style="font-weight:700;color:var(--gold)">Camilly Silva</div>
         <div style="color:var(--muted);margin-bottom:8px">Assistente • Styling</div>
         <div style="color:var(--muted)">Auxilia nos atendimentos, finalizações e na experiência do cliente.</div>
       </div>
