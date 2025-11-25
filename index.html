@@ -369,12 +369,16 @@ section{
   border: 1px solid rgba(255,255,255,0.05);
   text-align: center;
   box-shadow: 0 18px 40px rgba(0,0,0,0.4);
+  padding-top: 35px;
 }
 
 .team-photo {
   width: 220px;
   height: 220px;
-  margin: 0 auto 18px;
+
+  /* Agora funciona */
+  margin: 20px auto 18px;
+
   border-radius: 16px;
   overflow: hidden;
   border: 6px solid rgba(215,185,89,0.12);
@@ -382,6 +386,11 @@ section{
   align-items: center;
   justify-content: center;
   background: #000;
+}
+
+
+.team-card:nth-child(2) .team-photo {
+  margin-top: 30px;
 }
 
 .team-photo img {
@@ -801,6 +810,18 @@ select option:disabled {
   }
 }
 
+/* AJUSTE ESPECÍFICO PARA MOBILE – imagem da equipe */
+@media (max-width: 520px) {
+
+  .team-card {
+    padding-top: 26px !important;
+  }
+
+  .team-photo {
+    margin-top: 18px !important;   /* desce a foto */
+    margin-bottom: 16px !important;
+  }
+}
 
 </style>
 
