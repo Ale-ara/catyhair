@@ -5,614 +5,27 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Studio Caty Hair</title>
 
-<!-- Ícone -->
 <link rel="icon" href="https://i.imgur.com/OrJ2hfJ.jpeg" />
-
-<!-- Fonte -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<style>
-
-/* =========================================================
-   🎨 1. ROOT VARIABLES — base dourada premium
-========================================================= */
-:root{
-  --bg:#080707;
-  --panel:#0d0d0e;
-  --gold:#D7B959;
-  --gold-2:#E3C97A;
-  --muted:#cfc6b6;
-  --glass: rgba(255,255,255,0.03);
-  --card-shadow: 0 20px 60px rgba(215,185,89,0.08);
-}
-
-*{
-  box-sizing:border-box;
-  font-family:'Poppins',sans-serif;
-}
-
-html{ scroll-behavior:smooth; }
-
-body{
-  margin:0;
-  background: linear-gradient(180deg, #0c0c0c, #111);
-  color:#fff;
-  min-height:100vh;
-  -webkit-font-smoothing:antialiased;
-}
-
-
-/* =========================================================
-   🧭 2. HEADER PREMIUM — Desktop (versão C)
-========================================================= */
-header{
-  position:fixed;
-  top:0; left:0; right:0;
-  z-index:1200;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:14px 22px;
-  background:rgba(0,0,0,0.45);
-  border-bottom:1px solid rgba(215,185,89,0.18);
-  backdrop-filter:blur(10px);
-  box-shadow:0 8px 30px rgba(0,0,0,0.4);
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.brand img{
-  width:54px;
-  height:54px;
-  object-fit:cover;
-  border-radius:12px;
-  border:2px solid rgba(215,185,89,0.20);
-  box-shadow:0 0 12px rgba(215,185,89,0.26);
-  background:#000;
-  padding:4px;
-}
-
-.brand h1{
-  font-size:18px;
-  margin:0;
-  color:var(--gold);
-  letter-spacing:0.6px;
-  text-shadow:0 0 10px rgba(215,185,89,0.25);
-}
-
-/* ===== MENU DESKTOP ===== */
-nav{
-  display:flex;
-  gap:22px;
-  align-items:center;
-}
-
-nav a{
-  color:var(--muted);
-  text-decoration:none;
-  font-weight:600;
-  padding:10px 14px;
-  border-radius:14px;
-  transition:.25s;
-  border:1px solid transparent;
-}
-
-nav a:hover{
-  color:var(--gold);
-  border-color:rgba(215,185,89,0.35);
-  background:rgba(215,185,89,0.08);
-  box-shadow:0 0 12px rgba(215,185,89,0.25);
-}
-
-/* BOTÃO PREMIUM */
-.btn{
-  padding:12px 20px;
-  border-radius:999px;
-  border:2px solid rgba(215,185,89,0.12);
-  font-weight:800;
-  color:var(--gold);
-  background:transparent;
-  cursor:pointer;
-}
-
-.btn.primary{
-  background:linear-gradient(90deg,var(--gold),var(--gold-2));
-  color:#000;
-  border-color:var(--gold);
-  box-shadow:0 0 14px rgba(215,185,89,0.25);
-}
-
-.btn.ghost{
-  background:rgba(255,255,255,0.03);
-  color:var(--muted);
-  border-color:transparent;
-}
-
-
-/* =========================================================
-   🍔 3. MENU MOBILE FULLSCREEN PREMIUM
-========================================================= */
-
-/* Botão hambúrguer */
-.menu-btn{
-  display:none;
-  width:42px;
-  height:42px;
-  border-radius:10px;
-  border:1px solid rgba(215,185,89,0.22);
-  background:rgba(0,0,0,0.4);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  z-index:2000;
-}
-
-.menu-btn span{
-  width:22px;
-  height:2px;
-  background:var(--gold);
-  position:relative;
-  transition:.3s;
-}
-.menu-btn span::before,
-.menu-btn span::after{
-  content:"";
-  position:absolute;
-  width:100%;
-  height:2px;
-  background:var(--gold);
-  transition:.3s;
-}
-.menu-btn span::before{ top:-6px; }
-.menu-btn span::after{ top:6px; }
-
-/* Estado aberto */
-.menu-btn.open span{
-  background:transparent;
-}
-.menu-btn.open span::before{
-  top:0;
-  transform:rotate(45deg);
-}
-.menu-btn.open span::after{
-  top:0;
-  transform:rotate(-45deg);
-}
-
-/* ===== MENU FULLSCREEN ===== */
-.mobile-menu{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.75);
-  backdrop-filter:blur(12px);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  gap:28px;
-  opacity:0;
-  pointer-events:none;
-  transition:.35s ease;
-  z-index:1800;
-}
-
-.mobile-menu.open{
-  opacity:1;
-  pointer-events:auto;
-}
-
-.mobile-menu a{
-  font-size:22px;
-  font-weight:700;
-  text-decoration:none;
-  color:var(--gold);
-  padding:10px 20px;
-  border-radius:14px;
-  border:1px solid rgba(215,185,89,0.2);
-  background:rgba(255,255,255,0.04);
-  transition:.25s;
-}
-
-.mobile-menu a:hover{
-  background:rgba(215,185,89,0.1);
-  box-shadow:0 0 14px rgba(215,185,89,0.25);
-}
-
-
-/* =========================================================
-   🌅 4. HERO
-========================================================= */
-.hero{
-  height:86vh;
-  min-height:560px;
-  display:flex;
-  align-items:center;
-  padding:0 6vw;
-  gap:36px;
-  margin-top:86px;
-  position:relative;
-  overflow:hidden;
-}
-
-.hero-bg{
-  position:absolute;
-  inset:0;
-  background-position:center;
-  background-size:cover;
-  filter:contrast(1.02) saturate(1.05);
-  transform:scale(1.04);
-  transition:transform .9s ease, filter .6s ease;
-  z-index:0;
-}
-
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,0.38),rgba(0,0,0,0.8));
-  z-index:1;
-}
-
-.hero-left{
-  z-index:2;
-  max-width:620px;
-}
-
-.kicker{
-  color:var(--gold);
-  font-weight:700;
-  margin-bottom:10px;
-}
-
-.title{
-  font-size:40px;
-  line-height:1.1;
-  color:var(--gold);
-  font-weight:800;
-  margin:0 0 12px;
-  text-shadow:0 10px 40px rgba(0,0,0,0.6);
-}
-
-.subtitle{
-  color:var(--muted);
-  font-size:16px;
-  margin-bottom:20px;
-  max-width:620px;
-}
-
-
-/* =========================================================
-   🎥 5. VIDEO CARD
-========================================================= */
-.hero-right{
-  width:520px;
-  max-width:48%;
-  z-index:2;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.video-card{
-  width:100%;
-  height:420px;
-  border-radius:16px;
-  overflow:hidden;
-  border:2px solid rgba(215,185,89,0.12);
-  background:#000;
-  position:relative;
-  box-shadow:0 18px 40px rgba(0,0,0,0.6);
-}
-
-.video-card video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.sound-btn{
-  position:absolute;
-  right:14px;
-  bottom:14px;
-  background:rgba(0,0,0,0.5);
-  border:2px solid var(--gold);
-  color:var(--gold);
-  padding:8px 10px;
-  border-radius:10px;
-  cursor:pointer;
-  z-index:4;
-}
-
-
-/* =========================================================
-   📌 6. SECTIONS
-========================================================= */
-
-main{
-  max-width:1200px;
-  margin:0 auto;
-  padding-bottom:80px;
-}
-
-section{
-  padding:64px 6vw;
-}
-
-.section-title{
-  color:var(--gold);
-  font-weight:700;
-  margin-bottom:12px;
-}
-
-
-/* =========================================================
-   🎯 7. SERVICES
-========================================================= */
-
-.services-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
-}
-
-.service{
-  background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
-  padding:18px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,0.03);
-  min-height:140px;
-}
-
-.service h4{
-  color:var(--gold);
-  margin:0 0 8px;
-}
-
-.service p{
-  color:var(--muted);
-  font-size:14px;
-}
-
-
-/* =========================================================
-   🖼️ 8. GALLERY 1080×1080
-========================================================= */
-.slideshow{
-  position:relative;
-  height:360px;
-  border-radius:12px;
-  overflow:hidden;
-  border:2px solid rgba(215,185,89,0.06);
-  box-shadow:0 24px 70px rgba(0,0,0,0.6);
-}
-
-.slide{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  transition:opacity .9s ease;
-}
-
-.slide.active{ opacity:1; }
-
-.slide img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  aspect-ratio:1/1;
-}
-
-.dots{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  margin-top:12px;
-}
-
-.dot{
-  width:10px;height:10px;
-  border-radius:50%;
-  background:rgba(255,255,255,0.12);
-  cursor:pointer;
-}
-
-.dot.active{
-  background:var(--gold);
-  box-shadow:0 8px 20px rgba(215,185,89,0.12);
-}
-
-
-/* =========================================================
-   👩‍🦰 9. TEAM (ajustado mobile)
-========================================================= */
-
-.team-grid{
-  display:grid;
-  grid-template-columns:repeat(2, 1fr);
-  gap:26px;
-  margin-top:20px;
-}
-
-.team-card{
-  background:linear-gradient(180deg,rgba(255,255,255,0.03),
-                                       rgba(255,255,255,0.02));
-  padding:28px 20px;
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,0.05);
-  text-align:center;
-  box-shadow:0 18px 40px rgba(0,0,0,0.4);
-}
-
-.team-photo{
-  width:210px;
-  height:210px;
-  margin:18px auto;
-  border-radius:16px;
-  overflow:hidden;
-  border:6px solid rgba(215,185,89,0.12);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.team-photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-
-/* =========================================================
-   📱 10. RESPONSIVE
-========================================================= */
-
-@media(max-width:980px){
-  nav{ display:none; }
-
-  .menu-btn{
-    display:flex;
-  }
-
-  .hero{
-    flex-direction:column;
-    align-items:flex-start;
-    padding:16px 6vw;
-    height:auto;
-  }
-  .hero-right{
-    width:100%;
-  }
-  .video-card{
-    height:280px;
-  }
-}
-
-@media(max-width:520px){
-
-  .title{
-    font-size:30px;
-    line-height:1.2;
-  }
-
-  .video-card{
-    height:220px;
-    border-radius:12px;
-  }
-
-  .team-grid{
-    grid-template-columns:1fr;
-  }
-
-  .team-photo{
-    width:180px;
-    height:180px;
-  }
-
-  .fabs{
-    left:10px;
-    bottom:80px;
-  }
-
-  .chat-panel{
-    left:12px;
-    right:12px;
-    bottom:72px;
-    width:auto;
-    max-width:calc(100% - 24px);
-  }
-}
-
-/* =========================================================
-   11. FABS (botões flutuantes)
-========================================================= */
-.fabs{
-  position:fixed;
-  left:14px;
-  bottom:16px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  z-index:1500;
-  transition:opacity .28s, transform .28s;
-}
-
-.fabs.hidden-fabs{
-  opacity:0;
-  transform:translateY(12px) scale(.95);
-  pointer-events:none;
-}
-
-.fab{
-  width:52px;
-  height:52px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  box-shadow:0 12px 40px rgba(0,0,0,0.6);
-}
-
-.fab.whatsapp{
-  background:#25D366;
-}
-.fab.ig{
-  background:#E1306C;
-}
-
-
-/* =========================================================
-   💬 12. CHAT (com typing animation)
-========================================================= */
-
-.msg.typing{
-  display:flex;
-  gap:4px;
-  padding:10px;
-  max-width:78%;
-}
-
-.dot-typing{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:var(--gold);
-  opacity:0.35;
-  animation:typing 1s infinite;
-}
-
-@keyframes typing{
-  0%{opacity:0.2;}
-  50%{opacity:1;}
-  100%{opacity:0.2;}
-}
-
-.dot-typing:nth-child(2){ animation-delay:.2s; }
-.dot-typing:nth-child(3){ animation-delay:.4s; }
-
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ✨ BACKDROP DO CHAT -->
+<!-- BACKDROP DO CHAT -->
 <div id="chatBackdrop" class="chat-backdrop"></div>
 
-<!-- ✨ MENU MOBILE FULLSCREEN -->
+<!-- MENU MOBILE FULLSCREEN -->
 <div id="mobileMenu" class="mobile-menu">
   <a href="#home">Início</a>
   <a href="#services">Serviços</a>
   <a href="#gallery">Galeria</a>
   <a href="#team">Equipe</a>
   <a href="#contact">Contato</a>
-  <a class="btn primary" href="#contact" style="font-size:18px">Agendar</a>
+  <a class="btn primary" href="#contact">Agendar</a>
 </div>
 
-<!-- ✨ HEADER PREMIUM -->
+<!-- HEADER -->
 <header>
   <div class="brand">
     <img src="https://i.imgur.com/OrJ2hfJ.jpeg" alt="Logo Caty Hair">
@@ -622,7 +35,6 @@ section{
     </div>
   </div>
 
-  <!-- MENU DESKTOP -->
   <nav>
     <a href="#home">Início</a>
     <a href="#services">Serviços</a>
@@ -632,13 +44,10 @@ section{
     <a class="btn primary" href="#contact">Agendar</a>
   </nav>
 
-  <!-- BOTÃO MOBILE -->
-  <div id="menuBtn" class="menu-btn">
-    <span></span>
-  </div>
+  <div id="menuBtn" class="menu-btn"><span></span></div>
 </header>
 
-<!-- ✨ HERO -->
+<!-- HERO -->
 <section id="home" class="hero">
   <div class="hero-bg" style="background-image:url('https://i.imgur.com/4nyrYeT.jpeg')"></div>
 
@@ -646,12 +55,11 @@ section{
     <div class="kicker">Studio Caty Hair</div>
 
     <div class="title">
-      Transforme o seu visual.<br>
-      <span style="color:#fff">Brilho, corte e cor com estilo</span>
+      Transforme o seu visual.<br><span style="color:#fff">Brilho, corte e cor com estilo</span>
     </div>
 
     <div class="subtitle">
-      Atendimento moderno e técnicas atuais para realçar sua beleza como você merece!
+      Atendimento moderno, técnicas atuais e muito cuidado.
     </div>
 
     <div class="cta">
@@ -660,12 +68,10 @@ section{
     </div>
   </div>
 
-  <!-- VIDEO -->
   <div class="hero-right reveal">
     <div class="video-card">
       <video id="heroVideo" playsinline muted loop preload="auto">
         <source src="https://i.imgur.com/4xBNMXs.mp4" type="video/mp4">
-        Seu navegador não suporta vídeo.
       </video>
       <button class="sound-btn" id="soundBtn">🔊</button>
     </div>
@@ -674,44 +80,21 @@ section{
 
 <main>
 
-<!-- ✨ SERVICES -->
+<!-- SERVICES -->
 <section id="services" class="reveal">
   <div class="section-title">Serviços</div>
 
   <div class="services-grid">
-    <div class="service">
-      <h4>Corte & Styling</h4>
-      <p>Cortes modernos com finalização profissional.</p>
-    </div>
-
-    <div class="service">
-      <h4>Luzes & Coloração</h4>
-      <p>Balayage, mechas e colorações premium.</p>
-    </div>
-
-    <div class="service">
-      <h4>Tratamentos</h4>
-      <p>Hidratação, nutrição e reconstrução.</p>
-    </div>
-
-    <div class="service">
-      <h4>Escova & Penteados</h4>
-      <p>Escovas, modelagens e penteados.</p>
-    </div>
-
-    <div class="service">
-      <h4>Progressivas</h4>
-      <p>Alisamentos e redução de volume.</p>
-    </div>
-
-    <div class="service">
-      <h4>Consultoria</h4>
-      <p>Indicação de corte e cor ideal para você.</p>
-    </div>
+    <div class="service"><h4>Corte & Styling</h4><p>Cortes modernos com finalização profissional.</p></div>
+    <div class="service"><h4>Luzes & Coloração</h4><p>Balayage, mechas e colorações.</p></div>
+    <div class="service"><h4>Tratamentos</h4><p>Hidratação, nutrição e reconstrução.</p></div>
+    <div class="service"><h4>Escova & Penteados</h4><p>Modelagem e penteados.</p></div>
+    <div class="service"><h4>Progressivas</h4><p>Alisamento e redução de volume.</p></div>
+    <div class="service"><h4>Consultoria</h4><p>Indicação de corte e cor ideal.</p></div>
   </div>
 </section>
 
-<!-- ✨ GALLERY -->
+<!-- GALERIA -->
 <section id="gallery" class="reveal">
   <div class="section-title">Galeria</div>
 
@@ -727,32 +110,28 @@ section{
   <div class="dots" id="dots"></div>
 </section>
 
-<!-- ✨ TEAM -->
+<!-- TEAM -->
 <section id="team" class="reveal">
   <div class="section-title">Nossa Equipe</div>
 
   <div class="team-grid">
     <div class="team-card">
-      <div class="team-photo">
-        <img src="https://i.imgur.com/UxcAgGU.jpeg">
-      </div>
-      <div style="font-weight:700;color:var(--gold)">Catiana Silva</div>
-      <div style="color:var(--muted);margin-bottom:8px">Proprietária • Hair Artist</div>
-      <div style="color:var(--muted)">Especialista em coloração e luzes.</div>
+      <div class="team-photo"><img src="https://i.imgur.com/UxcAgGU.jpeg"></div>
+      <div class="tname">Catiana Silva</div>
+      <div class="trole">Proprietária • Hair Artist</div>
+      <p>Especialista em coloração e luzes.</p>
     </div>
 
     <div class="team-card">
-      <div class="team-photo">
-        <img src="https://i.imgur.com/RudDm0g.png">
-      </div>
-      <div style="font-weight:700;color:var(--gold)">Camilly Silva</div>
-      <div style="color:var(--muted);margin-bottom:8px">Assistente • Styling</div>
-      <div style="color:var(--muted)">Auxílio em finalização e manicure.</div>
+      <div class="team-photo"><img src="https://i.imgur.com/RudDm0g.png"></div>
+      <div class="tname">Camilly Silva</div>
+      <div class="trole">Assistente • Styling</div>
+      <p>Auxílio em finalização, atendimento e manicure.</p>
     </div>
   </div>
 </section>
 
-<!-- ✨ CONTACT -->
+<!-- CONTACT -->
 <section id="contact" class="reveal">
   <div class="section-title">Contato</div>
 
@@ -761,13 +140,13 @@ section{
       <p style="color:var(--muted)">Quer agendar? Envie uma mensagem!</p>
 
       <form id="contactForm">
-        <input id="fname" class="input" placeholder="Seu nome" />
-        <input id="fphone" class="input" placeholder="Telefone" style="margin-top:10px"/>
+        <input id="fname" class="input" placeholder="Seu nome">
+        <input id="fphone" class="input" placeholder="Telefone" style="margin-top:10px">
         <textarea id="fmsg" class="textarea" rows="4" placeholder="Mensagem" style="margin-top:10px"></textarea>
 
         <div style="display:flex;gap:10px;margin-top:12px">
           <button type="button" id="sendContact" class="send">Enviar WhatsApp</button>
-          <button type="reset" class="btn ghost" style="border:1px solid rgba(255,255,255,0.04)">Limpar</button>
+          <button type="reset" class="btn ghost">Limpar</button>
         </div>
       </form>
     </div>
@@ -780,439 +159,59 @@ section{
 
 </main>
 
-<!-- ✨ BOTÕES FLUTUANTES (FABS) -->
+<!-- FABS -->
 <div class="fabs" id="fabs">
   <a class="fab whatsapp" href="https://wa.me/5521980722830" target="_blank">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width:26px">
   </a>
-
   <a class="fab ig" href="https://instagram.com/_catyhair" target="_blank">
     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" style="width:26px">
   </a>
 </div>
 
-<!-- ✨ BOTÃO DO CHAT -->
+<!-- TOGGLE DO CHAT -->
 <div class="chat-toggle" id="chatToggle">💬</div>
 
-<!-- ✨ PAINEL DO CHAT -->
+<!-- CHAT PANEL -->
 <div class="chat-panel" id="chatPanel">
   <div class="chat-header">Atendimento • Caty Hair</div>
-
-  <div class="chat-body" id="chatBody">
-    <div class="msg bot">Olá! Eu sou a Caty 👋</div>
-  </div>
+  <div class="chat-body" id="chatBody"><div class="msg bot">Olá! Eu sou a Caty 👋</div></div>
 
   <div class="chat-footer">
-    <div style="width:100%">
-      <div class="select-wrapper" style="margin-bottom:8px;">
-        <select id="chatService" class="select">
-          <option value="">Serviço</option>
-          <option>Corte</option>
-          <option>Escova</option>
-          <option>Coloração</option>
-          <option>Luzes</option>
-          <option>Tratamento</option>
-        </select>
-      </div>
+    <div class="select-wrapper">
+      <select id="chatService" class="select">
+        <option value="">Serviço</option>
+        <option>Corte</option>
+        <option>Escova</option>
+        <option>Coloração</option>
+        <option>Luzes</option>
+        <option>Tratamento</option>
+      </select>
+    </div>
 
-      <div style="display:flex;gap:8px">
-        <input id="chatName" class="input" placeholder="Seu nome (opcional)">
-        <button id="chatSend" class="btn primary" style="padding:10px 12px">Enviar</button>
-      </div>
+    <div style="display:flex;gap:8px;margin-top:6px">
+      <input id="chatName" class="input" placeholder="Seu nome (opcional)">
+      <button id="chatSend" class="btn primary" style="padding:10px 12px">Enviar</button>
     </div>
   </div>
 </div>
 
-<!-- ✨ FOOTER PREMIUM -->
 <footer class="footer-premium">
   <div class="footer-inner">
-
-    <div class="footer-left">
+    <div>
       <div class="footer-title">Studio Caty Hair</div>
       <div class="footer-sub">Beleza • Cuidado • Autoestima</div>
       <div class="footer-copy">© <span id="yr"></span> Todos os direitos reservados.</div>
     </div>
 
-    <div class="footer-divider"></div>
-
     <div class="footer-right">
       <div class="credit-text">Desenvolvido por</div>
-      <a href="https://portfolio-alessandro.vercel.app/sobre.html" target="_blank" class="credit-link">
-        Alessandro Araujo ✨
-      </a>
+      <a href="https://portfolio-alessandro.vercel.app/sobre.html" target="_blank"
+         class="credit-link">Alessandro Araujo ✨</a>
     </div>
-
   </div>
 </footer>
 
-<!-- PARTE 3: JavaScript -->
 <script src="app.js"></script>
-
 </body>
-  <script>
-/* =========================================================
-   PARTE 3 — app.js (Menu mobile, Bot dinâmico com typing,
-   slideshow, video controls, fabs hide/show, scroll suave)
-   ========================================================= */
-
-/* ---------------- CONFIGURAÇÕES ---------------- */
-const WA_NUMBER = "5521980722830"; // número para abrir WhatsApp
-const CHAT_SEEN_KEY = "caty_chat_seen_v1"; // marca se já mostrou a saudação
-const TYPING_MAX_MS = 2000; // tempo máximo do typing
-
-/* ---------------- ELEMENTOS ---------------- */
-const menuBtn = document.getElementById("menuBtn");
-const mobileMenu = document.getElementById("mobileMenu");
-const headerNav = document.querySelector("nav");
-const menuLinks = mobileMenu ? mobileMenu.querySelectorAll("a[href^='#']") : [];
-const fabs = document.getElementById("fabs");
-
-const chatToggle = document.getElementById("chatToggle");
-const chatPanel  = document.getElementById("chatPanel");
-const chatBody   = document.getElementById("chatBody");
-const chatSend   = document.getElementById("chatSend");
-const chatService = document.getElementById("chatService");
-const chatName   = document.getElementById("chatName");
-const chatBackdrop = document.getElementById("chatBackdrop");
-
-const btnWhats = document.getElementById("btnWhats");
-const ctaBook = document.getElementById("ctaBook"); // pode não existir, checar
-const sendContact = document.getElementById("sendContact");
-
-const heroVideo = document.getElementById("heroVideo");
-const soundBtn = document.getElementById("soundBtn");
-
-/* slideshow elements */
-const slides = Array.from(document.querySelectorAll(".slideshow .slide"));
-const dotsWrap = document.getElementById("dots");
-
-/* pequenos utilitários */
-function safe(q){ return document.querySelector(q); }
-function sleep(ms){ return new Promise(res=>setTimeout(res, ms)); }
-
-/* ---------------- SLIDESHOW (AUTO) ---------------- */
-(function initSlideshow(){
-  if(!slides.length || !dotsWrap) return;
-  let idx = 0, timer = null, INTERVAL = 3600;
-
-  slides.forEach((s,i)=>{
-    const d = document.createElement("div");
-    d.className = 'dot' + (i===0 ? ' active' : '');
-    d.addEventListener('click', ()=> go(i));
-    dotsWrap.appendChild(d);
-  });
-
-  function show(i){
-    slides.forEach((s,ii)=> s.classList.toggle('active', ii===i));
-    Array.from(dotsWrap.children).forEach((d,ii)=> d.classList.toggle('active', ii===i));
-  }
-  function next(){ idx = (idx+1)%slides.length; show(idx); }
-  function go(i){ idx = i; show(idx); reset(); }
-  function reset(){ if(timer) clearInterval(timer); timer = setInterval(next, INTERVAL); }
-
-  show(idx); reset();
-
-  // pause when slideshow not visible
-  const slideshow = document.getElementById('slideshow');
-  if(slideshow){
-    const obs = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting) reset();
-        else clearInterval(timer);
-      });
-    }, {threshold:0.18});
-    obs.observe(slideshow);
-  }
-})();
-
-/* ---------------- HERO VIDEO (autoplay/pause on view) ---------------- */
-(function initHeroVideo(){
-  if(!heroVideo) return;
-  heroVideo.muted = true;
-  heroVideo.playsInline = true;
-  heroVideo.loop = true;
-
-  const vidObs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting) heroVideo.play().catch(()=>{});
-      else heroVideo.pause();
-    });
-  }, {threshold:0.35});
-  vidObs.observe(heroVideo);
-
-  if(soundBtn){
-    soundBtn.addEventListener('click', ()=>{
-      heroVideo.muted = false;
-      heroVideo.volume = 1;
-      soundBtn.style.display = 'none';
-      heroVideo.play().catch(()=>{});
-    });
-  }
-})();
-
-/* ---------------- MENU MOBILE FULLSCREEN ---------------- */
-(function initMobileMenu(){
-  if(!menuBtn || !mobileMenu) return;
-
-  menuBtn.addEventListener("click", ()=>{
-    const open = mobileMenu.classList.toggle("open");
-    menuBtn.classList.toggle("open", open);
-    // lock scroll when menu open
-    document.documentElement.style.overflow = open ? "hidden" : "";
-    document.body.style.overflow = open ? "hidden" : "";
-  });
-
-  // close when clicking a link and smooth scroll
-  menuLinks.forEach(a=>{
-    a.addEventListener("click", (e)=>{
-      // If internal anchor, let smooth scroll handle and close menu
-      const href = a.getAttribute("href");
-      if(href && href.startsWith("#")){
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if(target) target.scrollIntoView({behavior: "smooth"});
-      }
-      mobileMenu.classList.remove("open");
-      menuBtn.classList.remove("open");
-      document.documentElement.style.overflow = "";
-      document.body.style.overflow = "";
-    });
-  });
-
-  // close on Escape
-  document.addEventListener("keydown", (ev)=>{
-    if(ev.key === "Escape"){
-      mobileMenu.classList.remove("open");
-      menuBtn.classList.remove("open");
-      document.documentElement.style.overflow = "";
-      document.body.style.overflow = "";
-    }
-  });
-})();
-
-/* ---------------- SMOOTH SCROLL FOR DESKTOP NAV ---------------- */
-(function navSmoothScroll(){
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', (e)=>{
-      const href = a.getAttribute('href');
-      if(!href || href === "#") return;
-      const target = document.querySelector(href);
-      if(target){
-        e.preventDefault();
-        target.scrollIntoView({behavior:'smooth'});
-        // close mobile menu if open
-        if(mobileMenu && mobileMenu.classList.contains('open')){
-          mobileMenu.classList.remove('open');
-          menuBtn.classList.remove('open');
-          document.body.style.overflow = "";
-        }
-      }
-    });
-  });
-})();
-
-/* ---------------- CHAT UTIL (typing + push) ---------------- */
-let isTyping = false;
-
-/**
- * pushBot(text) — mostra as bolinhas de "digitando" antes de inserir a mensagem
- * delay é calculado automaticamente com base no tamanho da mensagem
- */
-function pushBot(text){
-  if(!chatBody) return;
-  // evita múltiplos typings concorrentes
-  if(isTyping) return;
-  isTyping = true;
-
-  // criar wrapper typing
-  const typing = document.createElement('div');
-  typing.className = 'msg typing';
-  typing.innerHTML = `
-    <div class="dot-typing"></div>
-    <div class="dot-typing"></div>
-    <div class="dot-typing"></div>
-  `;
-  chatBody.appendChild(typing);
-  chatBody.scrollTop = chatBody.scrollHeight;
-
-  // delay proporcional ao tamanho mas com limite
-  const estimated = Math.min(TYPING_MAX_MS, 500 + (text.length * 20));
-
-  setTimeout(()=>{
-    // remove typing e adiciona mensagem real
-    typing.remove();
-    const d = document.createElement('div');
-    d.className = 'msg bot';
-    d.innerText = text;
-    chatBody.appendChild(d);
-    chatBody.scrollTop = chatBody.scrollHeight;
-    isTyping = false;
-  }, estimated);
-}
-
-function pushUser(text){
-  if(!chatBody) return;
-  const d = document.createElement('div');
-  d.className = 'msg user';
-  d.innerText = text;
-  chatBody.appendChild(d);
-  chatBody.scrollTop = chatBody.scrollHeight;
-}
-
-/* ---------------- CHAT OPEN/CLOSE & BEHAVIOR ---------------- */
-function openChat(initialMessage){
-  if(!chatPanel || !chatBackdrop) return;
-  chatPanel.classList.add('open');
-  chatBackdrop.classList.add('show');
-  // esconder fabs
-  if(fabs) fabs.classList.add('hidden-fabs');
-
-  // bloquear scroll do body quando chat aberto em mobile
-  document.documentElement.style.overflow = "hidden";
-  document.body.style.overflow = "hidden";
-
-  // só mostrar a saudação uma única vez por sessão/localStorage
-  const seen = localStorage.getItem(CHAT_SEEN_KEY);
-  if(initialMessage && !seen){
-    pushBot(initialMessage);
-    localStorage.setItem(CHAT_SEEN_KEY, "1");
-  }
-}
-
-function closeChat(){
-  if(!chatPanel || !chatBackdrop) return;
-  chatPanel.classList.remove('open');
-  chatBackdrop.classList.remove('show');
-  // restaurar fabs
-  if(fabs) fabs.classList.remove('hidden-fabs');
-
-  // desbloquear scroll
-  document.documentElement.style.overflow = "";
-  document.body.style.overflow = "";
-}
-
-/* abrir/fechar via toggle */
-if(chatToggle){
-  chatToggle.addEventListener('click', ()=>{
-    if(chatPanel.classList.contains('open')) closeChat();
-    else openChat("Olá! 👋 Eu sou a Caty — me diga qual serviço você quer que eu prepare o orçamento.");
-  });
-}
-
-/* fechar quando clicar no backdrop */
-if(chatBackdrop){
-  chatBackdrop.addEventListener('click', closeChat);
-}
-
-/* ESC fecha o chat */
-document.addEventListener('keydown', (e)=>{
-  if(e.key === 'Escape') closeChat();
-});
-
-/* ---------------- CHAT SEND (abre WhatsApp with message) ---------------- */
-if(chatSend){
-  chatSend.addEventListener('click', ()=>{
-    const serv = chatService ? chatService.value.trim() : "";
-    const nome = chatName ? chatName.value.trim() : "";
-
-    if(!serv){
-      pushBot("Ops — selecione um serviço antes de abrir o WhatsApp, por favor.");
-      if(chatService) {
-        chatService.style.boxShadow = '0 0 0 3px rgba(255,0,0,0.12)';
-        setTimeout(()=> chatService.style.boxShadow = '', 700);
-      }
-      return;
-    }
-
-    // mostra a conversa no painel
-    pushUser(`${serv}${nome ? (' • ' + nome) : ''}`);
-    pushBot('Perfeito — abrindo o WhatsApp com a mensagem pronta.');
-
-    // formatar mensagem e abrir
-    let msg = `Olá! Gostaria de um orçamento para *${serv}*.\n`;
-    if(nome) msg += `Nome: ${nome}\n`;
-    msg += `\nVim pelo site: Studio Caty Hair.`;
-
-    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
-  });
-}
-
-/* ---------------- CONTACT FORM -> WhatsApp ---------------- */
-if(sendContact){
-  sendContact.addEventListener('click', ()=>{
-    const n = (document.getElementById('fname') || {}).value || "";
-    const p = (document.getElementById('fphone') || {}).value || "";
-    const m = (document.getElementById('fmsg') || {}).value || "";
-
-    let text = `Olá! Gostaria de um orçamento.\n`;
-    if(n) text += `Nome: ${n}\n`;
-    if(p) text += `Telefone: ${p}\n`;
-    if(m) text += `Mensagem: ${m}\n`;
-    text += `\nVim pelo site.`;
-
-    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`, '_blank');
-  });
-}
-
-/* ---------------- small helper prompt (only if not seen) ---------------- */
-(function initialHelperPrompt(){
-  const seen = localStorage.getItem(CHAT_SEEN_KEY);
-  if(!seen){
-    // mostrar uma dica pequena no chatBody depois de 900ms (sem abrir o painel)
-    setTimeout(()=> {
-      // se painel já aberto, não acrescenta aqui (openChat fará)
-      if(chatPanel && chatPanel.classList.contains('open')) return;
-      // adicionar mensagem pequena (sem abrir)
-      const helper = document.createElement('div');
-      helper.className = 'msg bot';
-      helper.innerText = "Olá! Precisa de um orçamento? Toque no botão 💬 ou 'Pedir Orçamento'.";
-      helper.style.opacity = "0.95";
-      // append mas não insista se chatBody não existe
-      if(chatBody) {
-        chatBody.appendChild(helper);
-        // manter apenas 2 mensagens iniciais para não lotar
-        setTimeout(()=> helper.remove(), 6000);
-      }
-    }, 900);
-  }
-})();
-
-/* ---------------- HIDE/SHOW FABS when chat opens ---------------- */
-/* (already handled in openChat/closeChat via class hidden-fabs) */
-
-/* ---------------- Accessibility: focus first select when opening via CTA ---------------- */
-if(btnWhats){
-  btnWhats.addEventListener('click', (e)=>{
-    e.preventDefault();
-    openChat("Vamos começar seu orçamento! Selecione o serviço e escreva seu nome (opcional).");
-    setTimeout(()=> {
-      if(chatService) chatService.focus();
-    }, 260);
-  });
-}
-
-/* ---------------- Optional CTA Book (scroll to contact) ---------------- */
-if(ctaBook){
-  ctaBook.addEventListener('click', (e)=>{
-    // if it's an anchor to #contact it will scroll automatically via navSmoothScroll, otherwise:
-    const contactEl = document.getElementById('contact');
-    if(contactEl){
-      e.preventDefault();
-      contactEl.scrollIntoView({behavior:'smooth'});
-    }
-  });
-}
-
-/* ---------------- Prevent repeated greeting flooding ---------------- */
-/* The pushBot function already prevents concurrent typings via isTyping flag.
-   We also use localStorage to avoid repeating the opening greeting. */
-
-/* ---------------- Minor polish: remove stray initial helper messages after long time ---------------- */
-setTimeout(()=> {
-  // remove any helper messages older than X (not strictly necessary)
-  // left intentionally minimal to avoid messing with real chat content
-}, 30000);
-
-/* ---------------- Final: small safety checks (ensure DOM exist) ---------------- */
-console.log("App.js carregado — menu/mobile/chat/slideshow ativos (selementos presentes).");
-</script>
+</html>
