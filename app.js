@@ -226,19 +226,28 @@ function openChat(initialMessage){
   if(initialMessage) showTypingThenPush(initialMessage);
 }
 
-function closeChat(){
-  if(!chatPanel || !chatBackdrop) return;
-  chatPanel.classList.remove('open');
-  chatBackdrop.classList.remove('show');
-  if(fabs) fabs.classList.remove('hidden-fabs');
-  document.documentElement.style.overflow = '';
-  document.body.style.overflow = '';
-}
+let chatOpenedOnce = false;
 
-chatToggle?.addEventListener('click', ()=>{
-  if(chatPanel.classList.contains('open')) closeChat();
-  else openChat('Olá! 👋 Eu sou a Caty — qual serviço você deseja?');
+chatToggle.addEventListener('click', () => {
+  const isOpen = chatPanel.classList.contains('open');
+
+  if (isOpen) {
+    // fechar
+    chatPanel.classList.remove('open');
+    chatBackdrop.classList.remove('show');
+  } else {
+    // abrir
+    chatPanel.classList.add('open');
+    chatBackdrop.classList.add('show');
+
+    // mensagem inicial apenas 1 vez
+    if (!chatOpenedOnce) {
+      pushBot("Olá! 👋 Eu sou a Caty — qual serviço você deseja?");
+      chatOpenedOnce = true;
+    }
+  }
 });
+
 
 // close when clicking outside or on backdrop
 chatBackdrop?.addEventListener('click', closeChat);
