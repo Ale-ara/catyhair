@@ -1,289 +1,341 @@
-/* ============================================================
-   📅 Ano Automático
-============================================================ */
-document.querySelectorAll("#yr").forEach(y => y.textContent = new Date().getFullYear());
+/* ============================
+   app.js — menu, chat, slideshow
+   ============================ */
 
+const WA_NUMBER = "5521980722830"; // alterar aqui se desejar
 
+/* elements */
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileMenuInner = mobileMenu?.querySelector('.mobile-menu-inner');
+const menuLinks = mobileMenu?.querySelectorAll('a') || [];
 
-/* ============================================================
-   🟡 HERO - efeito de movimento
-============================================================ */
-const hero = document.querySelector(".hero");
-const heroBg = document.querySelector(".hero-bg");
+const chatToggle = document.getElementById('chatToggle');
+const chatPanel = document.getElementById('chatPanel');
+const chatBody = document.getElementById('chatBody');
+const chatSend = document.getElementById('chatSend');
+const chatName = document.getElementById('chatName');
+const chatBackdrop = document.getElementById('chatBackdrop');
+const fabs = document.getElementById('fabs');
 
-if(hero && heroBg){
-  hero.addEventListener("mousemove", e => {
-    const r = hero.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
+const btnWhats = document.getElementById('btnWhats');
+const ctaBook = document.getElementById('ctaBook');
+const sendContact = document.getElementById('sendContact');
 
-    heroBg.style.transform = `translate(${x * 6}px, ${y * 6}px) scale(1.06)`;
-  });
+const heroVideo = document.getElementById('heroVideo');
+const soundBtn = document.getElementById('soundBtn');
 
-  hero.addEventListener("mouseleave", () => {
-    heroBg.style.transform = "scale(1.04)";
-  });
-}
+/* custom select */
+const customSelectBtn = document.getElementById('customSelectBtn');
+const customSelectList = document.getElementById('customSelectList');
+const customSelectValue = document.getElementById('customSelectValue');
 
+let customSelected = ""; // guarda valor selecionado
 
+/* small helpers */
+const qs = s => document.querySelector(s);
+const qsa = s => Array.from(document.querySelectorAll(s));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-/* ============================================================
-   🎥 HERO VIDEO – autoplay + botão de som
-============================================================ */
-const heroVideo = document.getElementById("heroVideo");
-const soundBtn = document.getElementById("soundBtn");
+/* ========== slideshow ========= */
+(function initSlideshow(){
+  const slides = Array.from(document.querySelectorAll('.slideshow .slide'));
+  const dotsWrap = document.getElementById('dots');
+  if(!slides.length || !dotsWrap) return;
+  let idx = 0, timer = null, INTERVAL = 3600;
 
-if(heroVideo){
-  heroVideo.muted = true;
-  heroVideo.play().catch(()=>{});
-
-  const obsVideo = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting) heroVideo.play().catch(()=>{});
-      else heroVideo.pause();
-    });
-  }, { threshold: 0.4 });
-
-  obsVideo.observe(heroVideo);
-}
-
-if(soundBtn){
-  soundBtn.addEventListener("click", () => {
-    heroVideo.muted = false;
-    soundBtn.style.display = "none";
-  });
-}
-
-
-
-/* ============================================================
-   🖼️ GALERIA SLIDESHOW AUTOMÁTICO
-============================================================ */
-(function(){
-  const slides = document.querySelectorAll(".slide");
-  const dotsWrap = document.getElementById("dots");
-  let index = 0;
-  let timer;
-  const interval = 3500;
-
-  slides.forEach((s, i) => {
-    const d = document.createElement("div");
-    d.className = "dot" + (i === 0 ? " active" : "");
-    d.addEventListener("click", () => go(i));
+  slides.forEach((s,i)=>{
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0 ? ' active' : '');
+    d.addEventListener('click', ()=> go(i));
     dotsWrap.appendChild(d);
   });
 
   function show(i){
-    slides.forEach((s, ii) => s.classList.toggle("active", ii === i));
-    dotsWrap.querySelectorAll(".dot").forEach((d, ii) => d.classList.toggle("active", ii === i));
+    slides.forEach((s,ii)=> s.classList.toggle('active', ii===i));
+    Array.from(dotsWrap.children).forEach((d,ii)=> d.classList.toggle('active', ii===i));
   }
+  function next(){ idx = (idx+1)%slides.length; show(idx); }
+  function go(i){ idx = i; show(idx); reset(); }
+  function reset(){ if(timer) clearInterval(timer); timer = setInterval(next, INTERVAL); }
 
-  function next(){
-    index = (index + 1) % slides.length;
-    show(index);
+  show(idx); reset();
+  const slideshow = document.getElementById('slideshow');
+  if(slideshow){
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) reset(); else clearInterval(timer);
+      });
+    }, {threshold:0.18});
+    obs.observe(slideshow);
   }
-
-  function go(i){
-    index = i;
-    show(index);
-    reset();
-  }
-
-  function reset(){
-    clearInterval(timer);
-    timer = setInterval(next, interval);
-  }
-
-  reset();
 })();
 
-
-
-/* ============================================================
-   🍔 MENU FULLSCREEN PREMIUM
-============================================================ */
-const menuBtn = document.getElementById("menuBtn");
-const mobileMenu = document.getElementById("mobileMenu");
-
-menuBtn.addEventListener("click", () => {
-  menuBtn.classList.toggle("open");
-  mobileMenu.classList.toggle("open");
-});
-
-
-// Fechar menu ao clicar fora
-document.addEventListener("click", (e)=>{
-  if(!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)){
-    mobileMenu.classList.remove("open");
-    menuBtn.classList.remove("open");
+/* ========== hero video controls ========= */
+(function(){
+  if(!heroVideo) return;
+  heroVideo.muted = true;
+  heroVideo.playsInline = true;
+  heroVideo.loop = true;
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) heroVideo.play().catch(()=>{});
+      else heroVideo.pause();
+    });
+  }, {threshold:0.35});
+  obs.observe(heroVideo);
+  if(soundBtn){
+    soundBtn.addEventListener('click', ()=>{
+      heroVideo.muted = false;
+      heroVideo.volume = 1;
+      soundBtn.style.display = 'none';
+      heroVideo.play().catch(()=>{});
+    });
   }
-});
+})();
 
-// Fechar ao clicar em item
-document.querySelectorAll(".mobile-menu a").forEach(a=>{
-  a.addEventListener("click", ()=>{
-    mobileMenu.classList.remove("open");
-    menuBtn.classList.remove("open");
+/* ========== mobile menu (open/close, click outside) ========= */
+(function initMobileMenu(){
+  if(!menuBtn || !mobileMenu) return;
+  menuBtn.addEventListener('click', (e)=>{
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.classList.toggle('open', open);
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+    document.body.style.overflow = open ? 'hidden' : '';
   });
-});
 
+  // close when click a link inside
+  menuLinks.forEach(a=>{
+    a.addEventListener('click', (ev)=>{
+      mobileMenu.classList.remove('open');
+      menuBtn.classList.remove('open');
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    });
+  });
 
+  // click outside: listen on document and ensure click not inside menu or button
+  document.addEventListener('click', (ev)=>{
+    if(!mobileMenu.classList.contains('open')) return;
+    const target = ev.target;
+    if(menuBtn.contains(target) || mobileMenu.contains(target)) return;
+    // outside -> close
+    mobileMenu.classList.remove('open');
+    menuBtn.classList.remove('open');
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  });
 
-/* ============================================================
-   💬 CHAT SYSTEM PREMIUM
-============================================================ */
-const chatToggle = document.getElementById("chatToggle");
-const chatPanel = document.getElementById("chatPanel");
-const chatBody = document.getElementById("chatBody");
-const chatBackdrop = document.getElementById("chatBackdrop");
-const chatService = document.getElementById("chatService");
-const chatName = document.getElementById("chatName");
-const chatSend = document.getElementById("chatSend");
-const fabs = document.querySelector(".fabs");
+  // ESC closes menu
+  document.addEventListener('keydown', (ev)=> {
+    if(ev.key === 'Escape'){
+      mobileMenu.classList.remove('open');
+      menuBtn.classList.remove('open');
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      closeChat();
+    }
+  });
+})();
 
-let firstOpen = true;
+/* ========== custom select (no native dropdown) ========= */
+(function initCustomSelect(){
+  if(!customSelectBtn || !customSelectList) return;
 
+  function openList(){
+    customSelectList.classList.add('open');
+    customSelectBtn.setAttribute('aria-expanded','true');
+    customSelectList.setAttribute('aria-hidden','false');
+  }
+  function closeList(){
+    customSelectList.classList.remove('open');
+    customSelectBtn.setAttribute('aria-expanded','false');
+    customSelectList.setAttribute('aria-hidden','true');
+  }
+  customSelectBtn.addEventListener('click',(ev)=>{
+    ev.stopPropagation();
+    customSelectList.classList.toggle('open');
+    const nowOpen = customSelectList.classList.contains('open');
+    customSelectBtn.setAttribute('aria-expanded', nowOpen ? 'true' : 'false');
+    customSelectList.setAttribute('aria-hidden', !nowOpen);
+  });
 
+  customSelectList.addEventListener('click', (ev)=>{
+    const li = ev.target.closest('li');
+    if(!li) return;
+    const val = li.dataset.value;
+    customSelected = val;
+    customSelectValue.textContent = val;
+    closeList();
+  });
 
-/* ------------------------------------------------------------
-   ✨ Funções de mensagens com typing animation
------------------------------------------------------------- */
-function botTyping(callback){
-  const bubble = document.createElement("div");
-  bubble.className = "msg bot typing";
-  bubble.innerHTML = `
-    <div class="dot-typing"></div>
-    <div class="dot-typing"></div>
-    <div class="dot-typing"></div>
-  `;
+  // close on outside click
+  document.addEventListener('click', (ev)=>{
+    if(customSelectList.classList.contains('open') && !customSelectBtn.contains(ev.target) && !customSelectList.contains(ev.target)){
+      closeList();
+    }
+  });
 
-  chatBody.appendChild(bubble);
+  // keyboard
+  customSelectBtn.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowDown'){ e.preventDefault(); openList(); customSelectList.querySelector('li')?.focus(); }
+    if(e.key === 'Escape') closeList();
+  });
+})();
+
+/* ========== chat (typing bubble, open/close, hide fabs) ========= */
+let isTyping = false;
+
+function showTypingThenPush(text){
+  if(!chatBody) return;
+  if(isTyping) return;
+  isTyping = true;
+  const typing = document.createElement('div');
+  typing.className = 'msg typing';
+  typing.innerHTML = '<div class="dot-typing"></div><div class="dot-typing"></div><div class="dot-typing"></div>';
+  chatBody.appendChild(typing);
   chatBody.scrollTop = chatBody.scrollHeight;
-
+  const estimated = Math.min(1800, 400 + (text.length * 18));
   setTimeout(()=>{
-    bubble.remove();
-    callback();
-  }, 800);
-}
-
-function pushBot(text){
-  botTyping(()=>{
-    const msg = document.createElement("div");
-    msg.className = "msg bot";
-    msg.innerText = text;
-    chatBody.appendChild(msg);
+    typing.remove();
+    const d = document.createElement('div');
+    d.className = 'msg bot';
+    d.innerText = text;
+    chatBody.appendChild(d);
     chatBody.scrollTop = chatBody.scrollHeight;
-  });
+    isTyping = false;
+  }, estimated);
 }
 
 function pushUser(text){
-  const msg = document.createElement("div");
-  msg.className = "msg user";
-  msg.innerText = text;
-  chatBody.appendChild(msg);
+  if(!chatBody) return;
+  const d = document.createElement('div');
+  d.className = 'msg user';
+  d.innerText = text;
+  chatBody.appendChild(d);
   chatBody.scrollTop = chatBody.scrollHeight;
 }
 
-
-
-/* ------------------------------------------------------------
-   🟡 Abrir / fechar chat
------------------------------------------------------------- */
-function openChat(){
-  chatBackdrop.classList.add("show");
-  chatPanel.classList.add("open");
-  fabs.classList.add("hidden");
-
-  if(firstOpen){
-    firstOpen = false;
-    pushBot("Olá! 😊 Qual serviço você deseja?");
-  }
+function openChat(initialMessage){
+  if(!chatPanel || !chatBackdrop) return;
+  chatPanel.classList.add('open');
+  chatBackdrop.classList.add('show');
+  if(fabs) fabs.classList.add('hidden-fabs');
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+  if(initialMessage) showTypingThenPush(initialMessage);
 }
 
 function closeChat(){
-  chatBackdrop.classList.remove("show");
-  chatPanel.classList.remove("open");
-  fabs.classList.remove("hidden");
+  if(!chatPanel || !chatBackdrop) return;
+  chatPanel.classList.remove('open');
+  chatBackdrop.classList.remove('show');
+  if(fabs) fabs.classList.remove('hidden-fabs');
+  document.documentElement.style.overflow = '';
+  document.body.style.overflow = '';
 }
 
-chatToggle.addEventListener("click", ()=>{
-  if(chatPanel.classList.contains("open")){
-    closeChat();
-  } else {
-    openChat();
-  }
+chatToggle?.addEventListener('click', ()=>{
+  if(chatPanel.classList.contains('open')) closeChat();
+  else openChat('Olá! 👋 Eu sou a Caty — qual serviço você deseja?');
 });
 
-chatBackdrop.addEventListener("click", closeChat);
-
-
-/* Abrir o chat ao clicar no botão do Hero */
-document.getElementById("btnWhats").addEventListener("click", e=>{
-  e.preventDefault();
-  openChat();
-
-  pushBot("Vamos começar seu orçamento! Selecione o serviço e coloque seu nome.");
-  setTimeout(()=> chatService.focus(), 200);
+// close when clicking outside or on backdrop
+chatBackdrop?.addEventListener('click', closeChat);
+document.addEventListener('click', (ev)=>{
+  if(!chatPanel.classList.contains('open')) return;
+  const inside = chatPanel.contains(ev.target) || chatToggle.contains(ev.target);
+  if(!inside) closeChat();
 });
 
-
-
-/* ------------------------------------------------------------
-   📤 Enviar mensagem para WhatsApp
------------------------------------------------------------- */
-chatSend.addEventListener("click", ()=>{
-
-  const service = chatService.value.trim();
-  const name = chatName.value.trim();
+/* ========== send chat -> whatsapp (uses custom select value) ========= */
+chatSend?.addEventListener('click', ()=>{
+  // value from customSelected
+  const service = customSelected || "";
+  const name = (chatName?.value || '').trim();
 
   if(!service){
-    pushBot("Por favor, selecione o serviço.");
-    chatService.style.boxShadow = "0 0 0 3px rgba(255,0,0,0.25)";
-    setTimeout(()=> chatService.style.boxShadow = "", 500);
+    showTypingThenPush('Ops — selecione um serviço antes de abrir o WhatsApp, por favor.');
+    // visual feedback: pulse select button
+    customSelectBtn.style.boxShadow = '0 0 0 3px rgba(255,0,0,0.12)';
+    setTimeout(()=> customSelectBtn.style.boxShadow = '', 900);
     return;
   }
 
-  pushUser(`${service}${name ? " • " + name : ""}`);
+  pushUser(`${service}${name ? (' • ' + name) : ''}`);
+  showTypingThenPush('Perfeito — abrindo o WhatsApp com a mensagem pronta.');
 
-  pushBot("Perfeito! Estou abrindo o WhatsApp pra você. 💛");
+  let msg = `Olá! Gostaria de um orçamento para *${service}*.\n`;
+  if(name) msg += `Nome: ${name}\n`;
+  msg += `\nVim pelo site: Studio Caty Hair.`;
 
-  let msg = `Olá! Gostaria de um orçamento para *${service}*.`;
-  if(name) msg += `\nNome: ${name}`;
-  msg += `\n\nVim pelo site.`;
-
-  window.open(
-    `https://wa.me/5521980722830?text=${encodeURIComponent(msg)}`,
-    "_blank"
-  );
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
 });
 
-
-
-/* ------------------------------------------------------------
-   📞 Envio do formulário de Contato
------------------------------------------------------------- */
-document.getElementById("sendContact").addEventListener("click", ()=>{
-  const n = fname.value.trim();
-  const p = fphone.value.trim();
-  const m = fmsg.value.trim();
-
-  let text = "Olá! Gostaria de um orçamento.\n";
+/* ========== contact form -> whatsapp ========= */
+sendContact?.addEventListener('click', ()=>{
+  const n = (document.getElementById('fname') || {}).value || "";
+  const p = (document.getElementById('fphone') || {}).value || "";
+  const m = (document.getElementById('fmsg') || {}).value || "";
+  let text = `Olá! Gostaria de um orçamento.\n`;
   if(n) text += `Nome: ${n}\n`;
   if(p) text += `Telefone: ${p}\n`;
   if(m) text += `Mensagem: ${m}\n`;
   text += `\nVim pelo site.`;
-
-  window.open(
-    `https://wa.me/5521980722830?text=${encodeURIComponent(text)}`,
-    "_blank"
-  );
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`, '_blank');
 });
 
+/* ========== initial helper bubble (only once per session) ========= */
+(function initialHint(){
+  const seenKey = 'caty_chat_seen_v1';
+  const seen = sessionStorage.getItem(seenKey);
+  if(!seen){
+    setTimeout(()=>{
+      if(chatPanel && chatPanel.classList.contains('open')) return;
+      const helper = document.createElement('div');
+      helper.className = 'msg bot';
+      helper.innerText = "Olá! Precisa de um orçamento? Toque no botão 💬 ou use 'Pedir Orçamento'.";
+      if(chatBody) {
+        chatBody.appendChild(helper);
+        chatBody.scrollTop = chatBody.scrollHeight;
+        setTimeout(()=> helper.remove(), 6000);
+      }
+      sessionStorage.setItem(seenKey,'1');
+    }, 900);
+  }
+})();
 
+/* ========== hide/show fabs based on chat (safety) ========= */
+function ensureFabs(){
+  if(!fabs) return;
+  // already handled in openChat/closeChat via class added/removed
+}
 
-/* ============================================================
-   ⌨️ ESC para fechar chat
-============================================================ */
-document.addEventListener("keydown", e=>{
-  if(e.key === "Escape") closeChat();
+/* ========== btnWhats (open chat and focus) ========= */
+btnWhats?.addEventListener('click', (e)=>{
+  e.preventDefault();
+  openChat('Vamos começar seu orçamento! Selecione o serviço e escreva seu nome (opcional).');
+  setTimeout(()=> { customSelectBtn?.focus(); }, 260);
 });
+
+/* ========== misc interactions: close mobile menu / chat on resize (cleanup) ========= */
+window.addEventListener('resize', ()=>{
+  // ensure mobile menu hidden if resized to desktop
+  if(window.innerWidth > 980){
+    mobileMenu.classList.remove('open');
+    menuBtn.classList.remove('open');
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  }
+});
+
+/* ========== accessibility: ESC closes chat/menu ========= */
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape'){
+    mobileMenu.classList.remove('open'); menuBtn.classList.remove('open');
+    closeChat();
+  }
+});
+
+/* ========== basic log ========= */
+console.log('app.js loaded');
