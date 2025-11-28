@@ -1,34 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Studio Caty Hair</title>
-  <link rel="icon" href="https://i.imgur.com/OrJ2hfJ.jpeg" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://i.imgur.com/OrJ2hfJ.jpeg">
 </head>
+
 <body>
-  <!-- Chat backdrop (shared) -->
-  <div id="chatBackdrop" class="chat-backdrop" aria-hidden="true"></div>
 
-  <!-- Mobile fullscreen menu -->
-  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
-    <div class="mobile-menu-inner">
-      <img class="mobile-logo" src="https://i.imgur.com/OrJ2hfJ.jpeg" alt="Caty Hair logo">
-      <a href="#home" class="mobile-link">Início</a>
-      <a href="#services" class="mobile-link">Serviços</a>
-      <a href="#gallery" class="mobile-link">Galeria</a>
-      <a href="#team" class="mobile-link">Equipe</a>
-      <a href="#contact" class="mobile-link">Contato</a>
-      <a class="btn primary mobile-cta" href="#contact">Agendar</a>
-    </div>
-  </nav>
+  <!-- BACKDROP CHAT -->
+  <div id="chatBackdrop" class="chat-backdrop"></div>
 
-  <!-- Header -->
+  <!-- HEADER -->
   <header>
     <div class="brand">
-      <img src="https://i.imgur.com/OrJ2hfJ.jpeg" alt="Logo Caty Hair">
+      <img src="https://i.imgur.com/OrJ2hfJ.jpeg">
       <div>
         <h1>Studio Caty Hair</h1>
         <div class="brand-sub">Beleza • Elegância • Estilo</div>
@@ -41,164 +29,136 @@
       <a href="#gallery">Galeria</a>
       <a href="#team">Equipe</a>
       <a href="#contact">Contato</a>
-      <a class="btn primary" id="ctaBook" href="#contact">Agendar</a>
+      <a href="#contact" class="btn-primary">Agendar</a>
     </nav>
 
-    <button id="menuBtn" class="menu-btn" aria-label="Abrir menu">
-      <span></span>
-    </button>
+    <!-- MENU HAMBURGUER — mobile only -->
+    <div id="menuToggle" class="menu-toggle">
+      <span></span><span></span><span></span>
+    </div>
   </header>
+
+  <!-- MENU FULLSCREEN MOBILE -->
+  <div id="mobileMenu" class="mobile-menu">
+    <a href="#home" class="m-link">Início</a>
+    <a href="#services" class="m-link">Serviços</a>
+    <a href="#gallery" class="m-link">Galeria</a>
+    <a href="#team" class="m-link">Equipe</a>
+    <a href="#contact" class="m-link">Contato</a>
+    <a href="#contact" class="m-link highlight">Agendar</a>
+  </div>
 
   <!-- HERO -->
   <section id="home" class="hero">
-    <div class="hero-bg" style="background-image:url('https://i.imgur.com/4nyrYeT.jpeg')"></div>
-    <div class="hero-left reveal">
-      <div class="kicker">Studio Caty Hair</div>
-      <div class="title">Transforme o seu visual.<br><span style="color:#fff">Brilho, corte e cor com estilo</span></div>
-      <div class="subtitle">Atendimento moderno e técnicas atuais para realçar sua beleza como você merece!</div>
-      <div class="cta">
-        <button class="btn primary" id="btnWhats">📲 Pedir Orçamento</button>
-        <a class="btn ghost" href="#gallery">Ver Galeria</a>
-      </div>
-    </div>
+    <img class="hero-bg" src="https://i.imgur.com/hpanMtH.jpeg">
 
-    <div class="hero-right reveal">
-      <div class="video-card">
-        <video id="heroVideo" playsinline muted loop preload="auto">
-          <source src="https://i.imgur.com/4xBNMXs.mp4" type="video/mp4">
-          Seu navegador não suporta vídeo.
-        </video>
-        <button class="sound-btn" id="soundBtn">🔊</button>
+    <div class="hero-content">
+      <h2 class="hero-title">Transforme o seu visual</h2>
+      <p class="hero-sub">Brilho, corte e cor com estilo.</p>
+
+      <div class="hero-cta">
+        <button id="btnWhats" class="btn-primary">📲 Pedir Orçamento</button>
+        <a href="#gallery" class="btn-ghost">Ver Galeria</a>
       </div>
     </div>
   </section>
 
-  <main>
-    <!-- SERVICES -->
-    <section id="services" class="reveal">
-      <div class="section-title">Serviços</div>
-      <div class="services-grid">
-        <div class="service"><h4>Corte & Styling</h4><p>Cortes modernos com finalização profissional.</p></div>
-        <div class="service"><h4>Luzes & Coloração</h4><p>Balayage, mechas e colorações premium.</p></div>
-        <div class="service"><h4>Tratamentos</h4><p>Hidratação, nutrição e reconstrução.</p></div>
-        <div class="service"><h4>Escova & Penteados</h4><p>Escovas, modelagens e penteados.</p></div>
-        <div class="service"><h4>Progressivas</h4><p>Alisamentos e redução de volume.</p></div>
-        <div class="service"><h4>Consultoria</h4><p>Indicação de corte e cor ideal para você.</p></div>
-      </div>
-    </section>
+  <!-- SERVICES -->
+  <section id="services">
+    <h2 class="section-title">Serviços</h2>
+    <div class="services-grid">
+      <div class="service"><h4>Corte</h4><p>Cortes modernos.</p></div>
+      <div class="service"><h4>Coloração</h4><p>Tintas e técnicas.</p></div>
+      <div class="service"><h4>Escova</h4><p>Finalização perfeita.</p></div>
+      <div class="service"><h4>Luzes</h4><p>Mechas e reflexos.</p></div>
+      <div class="service"><h4>Tratamento</h4><p>Reparação e brilho.</p></div>
+    </div>
+  </section>
 
-    <!-- GALLERY -->
-    <section id="gallery" class="reveal">
-      <div class="section-title">Galeria</div>
-      <div class="slideshow" id="slideshow">
-        <div class="slide active"><img src="https://i.imgur.com/PMkQ64k.jpeg" alt=""></div>
-        <div class="slide"><img src="https://i.imgur.com/aJn8GHz.jpeg" alt=""></div>
-        <div class="slide"><img src="https://i.imgur.com/HYgWlcC.jpeg" alt=""></div>
-      </div>
-      <div class="dots" id="dots"></div>
-    </section>
+  <!-- GALLERY -->
+  <section id="gallery">
+    <h2 class="section-title">Galeria</h2>
 
-    <!-- TEAM -->
-    <section id="team" class="reveal">
-      <div class="section-title">Nossa Equipe</div>
-      <div class="team-grid">
-        <div class="team-card">
-          <div class="team-photo"><img src="https://i.imgur.com/UxcAgGU.jpeg" alt="Catiana"></div>
-          <div class="team-name">Catiana Silva</div>
-          <div class="team-role">Proprietária • Hair Artist</div>
-          <div class="team-desc">Especialista em coloração e luzes.</div>
-        </div>
-        <div class="team-card">
-          <div class="team-photo"><img src="https://i.imgur.com/RudDm0g.png" alt="Camilly"></div>
-          <div class="team-name">Camilly Silva</div>
-          <div class="team-role">Assistente • Styling</div>
-          <div class="team-desc">Auxílio em finalização e manicure.</div>
-        </div>
-      </div>
-    </section>
+    <div class="slideshow" id="slideshow">
+      <div class="slide active"><img src="https://i.imgur.com/PMkQ64k.jpeg"></div>
+      <div class="slide"><img src="https://i.imgur.com/aJn8GHz.jpeg"></div>
+      <div class="slide"><img src="https://i.imgur.com/hpanMtH.jpeg"></div>
+    </div>
+    <div id="dots" class="dots"></div>
 
-    <!-- CONTACT -->
-    <section id="contact" class="reveal">
-      <div class="section-title">Contato</div>
-      <div class="contact-grid">
-        <div class="contact-card">
-          <p class="muted">Quer agendar? Envie uma mensagem!</p>
-          <form id="contactForm">
-            <input id="fname" class="input" placeholder="Seu nome" />
-            <input id="fphone" class="input" placeholder="Telefone" />
-            <textarea id="fmsg" class="textarea" rows="4" placeholder="Mensagem"></textarea>
-            <div class="contact-actions">
-              <button type="button" id="sendContact" class="send">Enviar WhatsApp</button>
-              <button type="reset" class="btn ghost">Limpar</button>
-            </div>
-          </form>
-        </div>
-        <div class="contact-pic">
-          <img src="https://i.imgur.com/UxcAgGU.jpeg" alt="studio">
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <h2 class="section-title">Nossa Equipe</h2>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-photo"><img src="https://i.imgur.com/UxcAgGU.jpeg"></div>
+        <h4 class="team-name">Catiana Silva</h4>
+        <p class="team-role">Proprietária • Hair Artist</p>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo"><img src="https://i.imgur.com/RudDm0g.png"></div>
+        <h4 class="team-name">Camilly Silva</h4>
+        <p class="team-role">Assistente • Styling</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="section-title">Contato</h2>
+
+    <div class="contact-grid">
+      <div class="contact-form">
+        <input id="fname" placeholder="Seu nome">
+        <input id="fphone" placeholder="Telefone">
+        <textarea id="fmsg" rows="4" placeholder="Mensagem"></textarea>
+
+        <div class="contact-actions">
+          <button id="sendContact" class="btn-primary">Enviar WhatsApp</button>
+          <button type="reset" class="btn-ghost">Limpar</button>
         </div>
       </div>
-    </section>
-  </main>
 
-  <!-- Floating FABs -->
-  <div class="fabs" id="fabs">
-    <a class="fab whatsapp" id="fabWhatsapp" href="https://wa.me/5521980722830" target="_blank" title="WhatsApp">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="wa">
-    </a>
-    <a class="fab ig" id="fabInsta" href="https://instagram.com/_catyhair" target="_blank" title="Instagram">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="ig">
-    </a>
+      <img class="contact-photo" src="https://i.imgur.com/UxcAgGU.jpeg">
+    </div>
+  </section>
+
+  <!-- FLOAT BUTTONS -->
+  <div class="fabs">
+    <a href="https://wa.me/5521980722830" class="fab whatsapp"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></a>
+    <a href="https://instagram.com/_catyhair" class="fab instagram"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg"></a>
   </div>
 
-  <!-- Chat toggle -->
-  <div class="chat-toggle" id="chatToggle" title="Atendimento">💬</div>
+  <!-- CHAT BUTTON -->
+  <div id="chatToggle" class="chat-toggle">💬</div>
 
-  <!-- Chat panel -->
-  <aside class="chat-panel" id="chatPanel" aria-hidden="true">
+  <!-- CHAT PANEL -->
+  <div id="chatPanel" class="chat-panel">
     <div class="chat-header">Atendimento • Caty Hair</div>
-    <div class="chat-body" id="chatBody" role="log" aria-live="polite">
-      <div class="msg bot">Olá! Eu sou a Caty 👋</div>
-    </div>
+    <div id="chatBody" class="chat-body"></div>
 
     <div class="chat-footer">
-      <!-- custom select -->
-      <div class="select-wrapper" id="selectWrapper">
-        <button id="customSelectBtn" class="custom-select-btn" aria-haspopup="listbox" aria-expanded="false">
-          <span id="customSelectValue">Serviço</span>
-          <span class="caret">▾</span>
-        </button>
-        <ul id="customSelectList" class="custom-select-list" role="listbox" tabindex="-1" aria-hidden="true">
-          <li role="option" data-value="Corte">Corte</li>
-          <li role="option" data-value="Escova">Escova</li>
-          <li role="option" data-value="Coloração">Coloração</li>
-          <li role="option" data-value="Luzes">Luzes</li>
-          <li role="option" data-value="Tratamento">Tratamento</li>
-        </ul>
-      </div>
+      <select id="chatService">
+        <option value="">Serviço</option>
+        <option>Corte</option>
+        <option>Coloração</option>
+        <option>Escova</option>
+        <option>Luzes</option>
+        <option>Tratamento</option>
+      </select>
 
-      <div class="chat-controls">
-        <input id="chatName" class="input" placeholder="Seu nome (opcional)">
-        <button id="chatSend" class="btn primary">Enviar</button>
+      <div class="chat-name-row">
+        <input id="chatName" placeholder="Seu nome (opcional)">
+        <button id="chatSend" class="btn-primary">Enviar</button>
       </div>
     </div>
-  </aside>
-
-  <!-- Footer -->
-  <footer class="footer-premium">
-    <div class="footer-inner">
-      <div class="footer-left">
-        <div class="footer-title">Studio Caty Hair</div>
-        <div class="footer-sub">Beleza • Cuidado • Autoestima</div>
-        <div class="footer-copy">© <span id="yr"></span> Todos os direitos reservados.</div>
-      </div>
-      <div class="footer-divider"></div>
-      <div class="footer-right">
-        <div class="credit-text">Desenvolvido por</div>
-        <a href="https://portfolio-alessandro.vercel.app/sobre.html" target="_blank" class="credit-link">Alessandro Araujo ✨</a>
-      </div>
-    </div>
-  </footer>
+  </div>
 
   <script src="app.js"></script>
+
 </body>
 </html>
