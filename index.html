@@ -1221,12 +1221,14 @@ function closeChat(){
 
 chatToggle.addEventListener('click', ()=>{
   if(chatPanel.classList.contains('open')){
-    chatPanel.classList.remove('open');
-    chatBackdrop.classList.remove('show');
+    closeChat();
   } else {
-    chatPanel.classList.add('open');
-    chatBackdrop.classList.add('show');
-    pushBot('Olá! 😊 Escolha serviço e depois abra o WhatsApp.');
+    openChat();
+
+    // Só envia mensagem se for a primeira abertura
+    if(chatBody.childElementCount <= 1){
+      pushBot('Olá! 😊 Escolha o serviço e depois abra o WhatsApp.');
+    }
   }
 });
 
