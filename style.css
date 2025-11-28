@@ -1,5 +1,5 @@
 /* =========================================================
-   1. ROOT VARIABLES — Cores premium
+   🎨 ROOT VARIABLES — Tema Premium Dourado
 ========================================================= */
 :root{
   --bg:#080707;
@@ -26,14 +26,15 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-/* =========================================================
-   2. HEADER PREMIUM
-========================================================= */
 
+
+/* =========================================================
+   🧭 HEADER DESKTOP
+========================================================= */
 header{
   position:fixed;
   top:0; left:0; right:0;
-  z-index:1200;
+  z-index:1500;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -56,9 +57,9 @@ header{
   object-fit:cover;
   border-radius:12px;
   border:2px solid rgba(215,185,89,0.20);
+  box-shadow:0 0 12px rgba(215,185,89,0.26);
   background:#000;
   padding:4px;
-  box-shadow:0 0 12px rgba(215,185,89,0.25);
 }
 
 .brand h1{
@@ -66,6 +67,7 @@ header{
   margin:0;
   color:var(--gold);
   letter-spacing:0.6px;
+  text-shadow:0 0 10px rgba(215,185,89,0.25);
 }
 
 nav{
@@ -81,6 +83,7 @@ nav a{
   padding:10px 14px;
   border-radius:14px;
   transition:.25s;
+  border:1px solid transparent;
 }
 
 nav a:hover{
@@ -90,36 +93,10 @@ nav a:hover{
   box-shadow:0 0 12px rgba(215,185,89,0.25);
 }
 
-/* =========================================================
-   3. BOTÕES PREMIUM
-========================================================= */
-
-.btn{
-  padding:12px 20px;
-  border-radius:999px;
-  border:2px solid rgba(215,185,89,0.12);
-  font-weight:800;
-  color:var(--gold);
-  background:transparent;
-  cursor:pointer;
-}
-
-.btn.primary{
-  background:linear-gradient(90deg,var(--gold),var(--gold-2));
-  color:#000;
-  border-color:var(--gold);
-  box-shadow:0 0 14px rgba(215,185,89,0.25);
-}
-
-.btn.ghost{
-  background:rgba(255,255,255,0.03);
-  color:var(--muted);
-  border-color:transparent;
-}
 
 
 /* =========================================================
-   4. MENU MOBILE FULLSCREEN
+   🍔 MENU MOBILE FULLSCREEN
 ========================================================= */
 
 .menu-btn{
@@ -143,7 +120,6 @@ nav a:hover{
   position:relative;
   transition:.3s;
 }
-
 .menu-btn span::before,
 .menu-btn span::after{
   content:"";
@@ -153,10 +129,10 @@ nav a:hover{
   background:var(--gold);
   transition:.3s;
 }
-
 .menu-btn span::before{ top:-6px; }
 .menu-btn span::after{ top:6px; }
 
+/* Estado aberto */
 .menu-btn.open span{
   background:transparent;
 }
@@ -169,16 +145,15 @@ nav a:hover{
   transform:rotate(-45deg);
 }
 
-/* FULLSCREEN MENU */
 .mobile-menu{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.75);
-  backdrop-filter:blur(12px);
+  background:rgba(0,0,0,0.78);
+  backdrop-filter:blur(14px);
   display:flex;
+  flex-direction:column;
   justify-content:center;
   align-items:center;
-  flex-direction:column;
   gap:28px;
   opacity:0;
   pointer-events:none;
@@ -195,22 +170,23 @@ nav a:hover{
   font-size:22px;
   font-weight:700;
   color:var(--gold);
-  padding:10px 20px;
-  border-radius:14px;
-  border:1px solid rgba(215,185,89,0.2);
-  background:rgba(255,255,255,0.04);
   text-decoration:none;
+  padding:14px 22px;
+  border-radius:14px;
+  border:1px solid rgba(215,185,89,0.22);
+  background:rgba(255,255,255,0.04);
+  transition:.25s;
+}
+.mobile-menu a:hover{
+  background:rgba(255,255,255,0.12);
+  box-shadow:0 0 12px rgba(215,185,89,0.3);
 }
 
-.mobile-menu a:hover{
-  background:rgba(215,185,89,0.1);
-}
 
 
 /* =========================================================
-   5. HERO
+   🌅 HERO
 ========================================================= */
-
 .hero{
   height:86vh;
   min-height:560px;
@@ -226,10 +202,11 @@ nav a:hover{
 .hero-bg{
   position:absolute;
   inset:0;
-  background-position:center;
   background-size:cover;
+  background-position:center;
+  filter:contrast(1.05);
   transform:scale(1.04);
-  filter:contrast(1.02) saturate(1.05);
+  transition:transform .7s ease;
   z-index:0;
 }
 
@@ -237,8 +214,7 @@ nav a:hover{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,0.38),rgba(0,0,0,0.8));
-  z-index:1;
+  background:linear-gradient(180deg,rgba(0,0,0,0.35),rgba(0,0,0,0.85));
 }
 
 .hero-left{
@@ -255,9 +231,9 @@ nav a:hover{
 .title{
   font-size:40px;
   line-height:1.1;
-  color:var(--gold);
   font-weight:800;
-  margin:0 0 12px;
+  color:var(--gold);
+  margin-bottom:12px;
 }
 
 .subtitle{
@@ -266,14 +242,40 @@ nav a:hover{
   margin-bottom:20px;
 }
 
+.cta{
+  display:flex;
+  gap:12px;
+}
+
+/* BOTÕES */
+.btn{
+  padding:12px 20px;
+  border-radius:999px;
+  border:2px solid rgba(215,185,89,0.12);
+  font-weight:800;
+  cursor:pointer;
+}
+
+.btn.primary{
+  background:linear-gradient(90deg,var(--gold),var(--gold-2));
+  color:#000;
+  border-color:var(--gold);
+}
+
+.btn.ghost{
+  background:rgba(255,255,255,0.04);
+  color:var(--muted);
+}
+
+
 
 /* =========================================================
-   6. VIDEO
+   🎥 HERO VIDEO
 ========================================================= */
-
 .hero-right{
   width:520px;
   max-width:48%;
+  z-index:2;
 }
 
 .video-card{
@@ -283,8 +285,8 @@ nav a:hover{
   overflow:hidden;
   border:2px solid rgba(215,185,89,0.12);
   background:#000;
-  position:relative;
   box-shadow:0 18px 40px rgba(0,0,0,0.6);
+  position:relative;
 }
 
 .video-card video{
@@ -300,16 +302,15 @@ nav a:hover{
   background:rgba(0,0,0,0.5);
   border:2px solid var(--gold);
   color:var(--gold);
-  padding:8px 10px;
   border-radius:10px;
-  cursor:pointer;
+  padding:8px 10px;
 }
 
 
-/* =========================================================
-   7. SEÇÕES GERAIS
-========================================================= */
 
+/* =========================================================
+   📦 SECTIONS
+========================================================= */
 main{
   max-width:1200px;
   margin:0 auto;
@@ -327,10 +328,10 @@ section{
 }
 
 
-/* =========================================================
-   8. SERVICES
-========================================================= */
 
+/* =========================================================
+   ✂️ SERVICES GRID
+========================================================= */
 .services-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -338,35 +339,29 @@ section{
 }
 
 .service{
-  background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+  background:var(--glass);
   padding:18px;
   border-radius:12px;
-  border:1px solid rgba(255,255,255,0.03);
-  min-height:140px;
+  border:1px solid rgba(255,255,255,0.04);
 }
 
 .service h4{
+  margin:0 0 6px;
   color:var(--gold);
-  margin:0 0 8px;
 }
 
-.service p{
-  color:var(--muted);
-  font-size:14px;
-}
 
 
 /* =========================================================
-   9. GALERIA 1080×1080
+   🖼️ GALERIA AUTOSLIDE — 1080 × 1080
 ========================================================= */
-
 .slideshow{
   position:relative;
   height:360px;
   border-radius:12px;
   overflow:hidden;
-  border:2px solid rgba(215,185,89,0.06);
-  box-shadow:0 24px 70px rgba(0,0,0,0.6);
+  border:2px solid rgba(215,185,89,0.1);
+  box-shadow:0 20px 50px rgba(0,0,0,0.6);
 }
 
 .slide{
@@ -397,6 +392,7 @@ section{
   height:10px;
   border-radius:50%;
   background:rgba(255,255,255,0.12);
+  cursor:pointer;
 }
 
 .dot.active{
@@ -404,29 +400,29 @@ section{
 }
 
 
-/* =========================================================
-   10. TEAM
-========================================================= */
 
+/* =========================================================
+   👩‍🦰 TEAM
+========================================================= */
 .team-grid{
   display:grid;
-  grid-template-columns:repeat(2, 1fr);
+  grid-template-columns:repeat(2,1fr);
   gap:26px;
 }
 
 .team-card{
-  background:linear-gradient(180deg,rgba(255,255,255,0.03),
-                                       rgba(255,255,255,0.02));
-  padding:28px 20px;
+  background:var(--glass);
+  padding:26px;
   border-radius:18px;
-  border:1px solid rgba(255,255,255,0.05);
   text-align:center;
+  border:1px solid rgba(255,255,255,0.05);
+  box-shadow:0 18px 40px rgba(0,0,0,0.4);
 }
 
 .team-photo{
   width:210px;
   height:210px;
-  margin:18px auto;
+  margin:0 auto 16px;
   border-radius:16px;
   overflow:hidden;
   border:6px solid rgba(215,185,89,0.12);
@@ -438,22 +434,28 @@ section{
   object-fit:cover;
 }
 
-.tname{
-  font-weight:700;
+.team-name{
   color:var(--gold);
-  font-size:17px;
+  font-weight:700;
+  font-size:18px;
 }
 
-.trole{
+.team-role{
   color:var(--muted);
+  font-size:14px;
   margin-bottom:8px;
 }
 
+.team-desc{
+  color:var(--muted);
+  font-size:14px;
+}
+
+
 
 /* =========================================================
-   11. CONTACT
+   📝 CONTACT
 ========================================================= */
-
 .contact-grid{
   display:grid;
   grid-template-columns:1fr 360px;
@@ -463,9 +465,8 @@ section{
 .contact-card{
   padding:18px;
   border-radius:12px;
-  background:linear-gradient(180deg,rgba(255,255,255,0.02),
-                                      rgba(255,255,255,0.01));
-  border:1px solid rgba(255,255,255,0.03);
+  background:var(--glass);
+  border:1px solid rgba(255,255,255,0.04);
 }
 
 .input,
@@ -473,40 +474,46 @@ section{
   width:100%;
   padding:12px;
   border-radius:10px;
-  border:1px solid rgba(255,255,255,0.05);
-  background:rgba(255,255,255,0.03);
-  color:var(--muted);
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.04);
+  color:#fff;
 }
 
 .send{
   background:var(--gold);
-  color:#000;
-  padding:10px 14px;
-  border-radius:10px;
   border:none;
+  padding:12px 14px;
+  border-radius:10px;
   font-weight:800;
+  margin-top:12px;
   cursor:pointer;
+  color:#000;
+}
+
+.contact-img{
+  width:100%;
+  border-radius:12px;
 }
 
 
-/* =========================================================
-   12. FABS
-========================================================= */
 
+/* =========================================================
+   🔘 FLOATING BUTTONS (FABS)
+========================================================= */
 .fabs{
   position:fixed;
   left:14px;
-  bottom:16px;
+  bottom:18px;
   display:flex;
   flex-direction:column;
   gap:10px;
   z-index:1500;
-  transition:.28s ease;
+  transition:.25s;
 }
 
-.fabs.hidden-fabs{
+.fabs.hidden{
   opacity:0;
-  transform:translateY(12px) scale(.95);
+  transform:translateY(10px);
   pointer-events:none;
 }
 
@@ -517,7 +524,7 @@ section{
   display:flex;
   align-items:center;
   justify-content:center;
-  box-shadow:0 12px 40px rgba(0,0,0,0.6);
+  box-shadow:0 14px 40px rgba(0,0,0,0.55);
 }
 
 .fab.whatsapp{
@@ -528,20 +535,25 @@ section{
   background:#E1306C;
 }
 
+.fab img{
+  width:26px;
+}
+
+
 
 /* =========================================================
-   13. CHAT
+   💬 CHAT
 ========================================================= */
 
 .chat-backdrop{
   position:fixed;
   inset:0;
   background:rgba(0,0,0,0.65);
-  backdrop-filter:blur(3px);
+  backdrop-filter:blur(4px);
   opacity:0;
   pointer-events:none;
-  transition:.35s;
-  z-index:1000;
+  transition:.3s;
+  z-index:1400;
 }
 
 .chat-backdrop.show{
@@ -553,17 +565,18 @@ section{
   position:fixed;
   right:20px;
   bottom:22px;
-  background:var(--gold);
   width:64px;
   height:64px;
+  background:var(--gold);
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  color:#000;
   cursor:pointer;
-  z-index:2000;
+  z-index:1501;
   box-shadow:0 20px 60px rgba(0,0,0,0.6);
+  color:#000;
+  font-weight:700;
 }
 
 .chat-panel{
@@ -571,19 +584,16 @@ section{
   right:20px;
   bottom:100px;
   width:360px;
-  background:linear-gradient(180deg,rgba(10,10,10,0.95),
-                                      rgba(10,10,10,0.9));
+  background:rgba(10,10,10,0.95);
   border-radius:14px;
   border:1px solid rgba(255,255,255,0.04);
-  box-shadow:0 40px 100px rgba(0,0,0,0.7);
   display:flex;
   flex-direction:column;
-  overflow:hidden;
-  transform:translateY(12px);
+  transform:translateY(20px);
   opacity:0;
   pointer-events:none;
-  transition:.28s ease;
-  z-index:2001;
+  transition:.3s;
+  z-index:1502;
 }
 
 .chat-panel.open{
@@ -593,96 +603,88 @@ section{
 }
 
 .chat-header{
-  padding:12px;
+  padding:14px;
+  border-bottom:1px solid rgba(255,255,255,0.04);
   color:var(--gold);
   font-weight:700;
-  border-bottom:1px solid rgba(255,255,255,0.03);
 }
 
 .chat-body{
   padding:12px;
-  max-height:320px;
-  overflow:auto;
+  max-height:300px;
+  overflow-y:auto;
   display:flex;
   flex-direction:column;
-  gap:8px;
+  gap:10px;
 }
 
 .msg{
   padding:10px;
   border-radius:10px;
-  max-width:78%;
+  max-width:80%;
 }
 
 .msg.bot{
-  background:linear-gradient(90deg,var(--glass),rgba(255,255,255,0.02));
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.05);
 }
 
 .msg.user{
-  background:linear-gradient(90deg,rgba(215,185,89,0.14),
-                                   rgba(215,185,89,0.08));
+  align-self:flex-end;
+  background:rgba(215,185,89,0.18);
   color:#000;
 }
 
-.chat-footer{
-  padding:10px;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
 
-/* typing animation */
+
+/* Typing animation */
 .msg.typing{
   display:flex;
-  gap:4px;
-  padding:10px;
+  gap:6px;
 }
 
 .dot-typing{
   width:8px;
   height:8px;
-  border-radius:50%;
   background:var(--gold);
-  opacity:0.35;
+  border-radius:50%;
+  opacity:.3;
   animation:typing 1s infinite;
 }
-
-@keyframes typing{
-  0%{opacity:0.2;}
-  50%{opacity:1;}
-  100%{opacity:0.2;}
-}
-
 .dot-typing:nth-child(2){ animation-delay:.2s; }
 .dot-typing:nth-child(3){ animation-delay:.4s; }
 
-
-/* =========================================================
-   14. SELECT PREMIUM
-========================================================= */
-
-select{
-  appearance:none;
-  -webkit-appearance:none;
-  -moz-appearance:none;
+@keyframes typing {
+  0%{opacity:.2;}
+  50%{opacity:1;}
+  100%{opacity:.2;}
 }
 
-select option{
-  background:#0d0d0d;
-  color:#f5e9c0;
+.chat-footer{
+  padding:12px;
+  border-top:1px solid rgba(255,255,255,0.04);
+}
+
+.chat-inputs{
+  display:flex;
+  gap:8px;
+}
+
+
+
+/* SELECT PREMIUM */
+.select-wrapper{
+  position:relative;
 }
 
 .select{
-  background:rgba(215,185,89,0.12);
-  border:1px solid rgba(215,185,89,0.35);
-  padding:12px 14px;
-  border-radius:10px;
-  color:#f5e9c0 !important;
   width:100%;
-}
-
-.select-wrapper{
-  position:relative;
+  padding:12px;
+  background:rgba(215,185,89,0.12);
+  border-radius:10px;
+  border:1px solid rgba(215,185,89,0.35);
+  color:#f5e9c0;
+  cursor:pointer;
 }
 
 .select-wrapper::after{
@@ -695,15 +697,15 @@ select option{
 }
 
 
-/* =========================================================
-   15. FOOTER PREMIUM
-========================================================= */
 
+/* =========================================================
+   🦶 FOOTER PREMIUM
+========================================================= */
 .footer-premium{
-  margin-top:80px;
   padding:40px 6vw;
-  background:linear-gradient(180deg,#0a0a0a,#080606);
-  border-top:1px solid rgba(215,185,89,0.15);
+  background:linear-gradient(180deg,#0a0a0a,#070707);
+  border-top:1px solid rgba(215,185,89,0.12);
+  margin-top:80px;
 }
 
 .footer-inner{
@@ -712,53 +714,54 @@ select option{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:40px;
   flex-wrap:wrap;
+  gap:40px;
 }
 
 .footer-title{
+  color:var(--gold);
   font-size:20px;
   font-weight:700;
-  color:var(--gold);
 }
 
 .footer-sub{
   color:var(--muted);
-  font-size:14px;
 }
 
 .footer-copy{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.credit-text{
+  color:var(--muted);
   font-size:13px;
 }
 
 .credit-link{
   color:var(--gold);
   text-decoration:none;
-  font-weight:700;
   font-size:16px;
+  font-weight:700;
 }
 
-
-@media(max-width:600px){
-  .footer-inner{
-    flex-direction:column;
-    text-align:center;
-  }
+.credit-link:hover{
+  color:var(--gold-2);
 }
+
 
 
 /* =========================================================
-   16. RESPONSIVE
+   📱 RESPONSIVE
 ========================================================= */
 
 @media(max-width:980px){
   nav{ display:none; }
-
   .menu-btn{ display:flex; }
 
   .hero{
     flex-direction:column;
-    padding:16px 6vw;
+    padding:20px 6vw;
     height:auto;
   }
 
@@ -780,15 +783,18 @@ select option{
 }
 
 @media(max-width:520px){
-  .title{ font-size:30px; }
+  .title{ font-size:28px; }
   .video-card{ height:220px; }
-  .team-photo{ width:180px; height:180px; }
-  .fabs{ left:10px; bottom:80px; }
-
   .chat-panel{
-    left:12px;
-    right:12px;
+    left:10px;
+    right:10px;
+    bottom:80px;
     width:auto;
-    bottom:72px;
+  }
+  .chat-toggle{
+    right:14px;
+    bottom:14px;
+    width:58px;
+    height:58px;
   }
 }
