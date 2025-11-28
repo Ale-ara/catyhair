@@ -6,16 +6,18 @@
 <title>Studio Caty Hair</title>
 
 <link rel="icon" href="https://i.imgur.com/OrJ2hfJ.jpeg" />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="style.css">
+
+<!-- Fonte -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<!-- BACKDROP DO CHAT -->
+<!-- ========= BACKDROP DO CHAT ========= -->
 <div id="chatBackdrop" class="chat-backdrop"></div>
 
-<!-- MENU MOBILE FULLSCREEN -->
+<!-- ========= MENU MOBILE FULLSCREEN ========= -->
 <div id="mobileMenu" class="mobile-menu">
   <a href="#home">Início</a>
   <a href="#services">Serviços</a>
@@ -25,10 +27,10 @@
   <a class="btn primary" href="#contact">Agendar</a>
 </div>
 
-<!-- HEADER -->
+<!-- ========= HEADER ========= -->
 <header>
   <div class="brand">
-    <img src="https://i.imgur.com/OrJ2hfJ.jpeg" alt="Logo Caty Hair">
+    <img src="https://i.imgur.com/OrJ2hfJ.jpeg" alt="Logo">
     <div>
       <h1>Studio Caty Hair</h1>
       <div style="color:var(--muted);font-size:13px">Beleza • Elegância • Estilo</div>
@@ -44,23 +46,18 @@
     <a class="btn primary" href="#contact">Agendar</a>
   </nav>
 
+  <!-- Ícone mobile -->
   <div id="menuBtn" class="menu-btn"><span></span></div>
 </header>
 
-<!-- HERO -->
+<!-- ========= HERO ========= -->
 <section id="home" class="hero">
   <div class="hero-bg" style="background-image:url('https://i.imgur.com/4nyrYeT.jpeg')"></div>
 
   <div class="hero-left reveal">
     <div class="kicker">Studio Caty Hair</div>
-
-    <div class="title">
-      Transforme o seu visual.<br><span style="color:#fff">Brilho, corte e cor com estilo</span>
-    </div>
-
-    <div class="subtitle">
-      Atendimento moderno, técnicas atuais e muito cuidado.
-    </div>
+    <div class="title">Transforme o seu visual.<br><span style="color:#fff">Brilho, corte e cor</span></div>
+    <div class="subtitle">Atendimento moderno e técnicas profissionais para realçar sua beleza.</div>
 
     <div class="cta">
       <button class="btn primary" id="btnWhats">📲 Pedir Orçamento</button>
@@ -80,21 +77,20 @@
 
 <main>
 
-<!-- SERVICES -->
+<!-- ========= SERVICES ========= -->
 <section id="services" class="reveal">
   <div class="section-title">Serviços</div>
-
   <div class="services-grid">
-    <div class="service"><h4>Corte & Styling</h4><p>Cortes modernos com finalização profissional.</p></div>
-    <div class="service"><h4>Luzes & Coloração</h4><p>Balayage, mechas e colorações.</p></div>
+    <div class="service"><h4>Corte & Styling</h4><p>Cortes modernos com acabamento premium.</p></div>
+    <div class="service"><h4>Luzes & Coloração</h4><p>Mechas, balayage e tintura profissional.</p></div>
     <div class="service"><h4>Tratamentos</h4><p>Hidratação, nutrição e reconstrução.</p></div>
-    <div class="service"><h4>Escova & Penteados</h4><p>Modelagem e penteados.</p></div>
-    <div class="service"><h4>Progressivas</h4><p>Alisamento e redução de volume.</p></div>
-    <div class="service"><h4>Consultoria</h4><p>Indicação de corte e cor ideal.</p></div>
+    <div class="service"><h4>Escova & Penteado</h4><p>Modelagem e penteados para eventos.</p></div>
+    <div class="service"><h4>Progressivas</h4><p>Redução de volume e alinhamento.</p></div>
+    <div class="service"><h4>Consultoria</h4><p>Indicação de corte e cor.</p></div>
   </div>
 </section>
 
-<!-- GALERIA -->
+<!-- ========= GALLERY ========= -->
 <section id="gallery" class="reveal">
   <div class="section-title">Galeria</div>
 
@@ -110,72 +106,67 @@
   <div class="dots" id="dots"></div>
 </section>
 
-<!-- TEAM -->
+<!-- ========= TEAM ========= -->
 <section id="team" class="reveal">
   <div class="section-title">Nossa Equipe</div>
 
   <div class="team-grid">
     <div class="team-card">
       <div class="team-photo"><img src="https://i.imgur.com/UxcAgGU.jpeg"></div>
-      <div class="tname">Catiana Silva</div>
-      <div class="trole">Proprietária • Hair Artist</div>
-      <p>Especialista em coloração e luzes.</p>
+      <div class="team-name">Catiana Silva</div>
+      <div class="team-role">Proprietária • Hair Artist</div>
+      <p class="team-desc">Especialista em coloração, luzes e cortes personalizados.</p>
     </div>
 
     <div class="team-card">
       <div class="team-photo"><img src="https://i.imgur.com/RudDm0g.png"></div>
-      <div class="tname">Camilly Silva</div>
-      <div class="trole">Assistente • Styling</div>
-      <p>Auxílio em finalização, atendimento e manicure.</p>
+      <div class="team-name">Camilly Silva</div>
+      <div class="team-role">Assistente • Styling</div>
+      <p class="team-desc">Auxilia em finalizações, atendimento e experiência do cliente.</p>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ========= CONTACT ========= -->
 <section id="contact" class="reveal">
   <div class="section-title">Contato</div>
 
   <div class="contact-grid">
     <div class="contact-card">
-      <p style="color:var(--muted)">Quer agendar? Envie uma mensagem!</p>
-
-      <form id="contactForm">
+      <form>
         <input id="fname" class="input" placeholder="Seu nome">
-        <input id="fphone" class="input" placeholder="Telefone" style="margin-top:10px">
-        <textarea id="fmsg" class="textarea" rows="4" placeholder="Mensagem" style="margin-top:10px"></textarea>
+        <input id="fphone" class="input" placeholder="Telefone">
+        <textarea id="fmsg" class="textarea" rows="4" placeholder="Mensagem"></textarea>
 
-        <div style="display:flex;gap:10px;margin-top:12px">
-          <button type="button" id="sendContact" class="send">Enviar WhatsApp</button>
-          <button type="reset" class="btn ghost">Limpar</button>
-        </div>
+        <button type="button" id="sendContact" class="send">Enviar WhatsApp</button>
       </form>
     </div>
 
-    <div style="min-width:260px">
-      <img src="https://i.imgur.com/UxcAgGU.jpeg" style="width:100%;border-radius:12px;border:1px solid rgba(255,255,255,0.03)">
-    </div>
+    <div><img src="https://i.imgur.com/UxcAgGU.jpeg" class="contact-img"></div>
   </div>
 </section>
 
 </main>
 
-<!-- FABS -->
-<div class="fabs" id="fabs">
+<!-- ========= FAB BUTTONS ========= -->
+<div id="fabs" class="fabs">
   <a class="fab whatsapp" href="https://wa.me/5521980722830" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width:26px">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
   </a>
   <a class="fab ig" href="https://instagram.com/_catyhair" target="_blank">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" style="width:26px">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg">
   </a>
 </div>
 
-<!-- TOGGLE DO CHAT -->
-<div class="chat-toggle" id="chatToggle">💬</div>
+<!-- ========= CHAT ========= -->
+<div id="chatToggle" class="chat-toggle">💬</div>
 
-<!-- CHAT PANEL -->
-<div class="chat-panel" id="chatPanel">
+<div id="chatPanel" class="chat-panel">
   <div class="chat-header">Atendimento • Caty Hair</div>
-  <div class="chat-body" id="chatBody"><div class="msg bot">Olá! Eu sou a Caty 👋</div></div>
+
+  <div id="chatBody" class="chat-body">
+    <div class="msg bot">Olá! Eu sou a Caty 👋</div>
+  </div>
 
   <div class="chat-footer">
     <div class="select-wrapper">
@@ -189,16 +180,17 @@
       </select>
     </div>
 
-    <div style="display:flex;gap:8px;margin-top:6px">
+    <div class="chat-inputs">
       <input id="chatName" class="input" placeholder="Seu nome (opcional)">
-      <button id="chatSend" class="btn primary" style="padding:10px 12px">Enviar</button>
+      <button id="chatSend" class="btn primary">Enviar</button>
     </div>
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer class="footer-premium">
   <div class="footer-inner">
-    <div>
+    <div class="footer-left">
       <div class="footer-title">Studio Caty Hair</div>
       <div class="footer-sub">Beleza • Cuidado • Autoestima</div>
       <div class="footer-copy">© <span id="yr"></span> Todos os direitos reservados.</div>
@@ -206,12 +198,12 @@
 
     <div class="footer-right">
       <div class="credit-text">Desenvolvido por</div>
-      <a href="https://portfolio-alessandro.vercel.app/sobre.html" target="_blank"
-         class="credit-link">Alessandro Araujo ✨</a>
+      <a class="credit-link" href="https://portfolio-alessandro.vercel.app/sobre.html" target="_blank">Alessandro Araujo ✨</a>
     </div>
   </div>
 </footer>
 
 <script src="app.js"></script>
+
 </body>
 </html>
